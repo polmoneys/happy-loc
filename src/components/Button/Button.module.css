@@ -47,11 +47,13 @@
   outline-color: var(--teal-4);
 }
 .root.text {
-  background-color: none;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  font-weight: bold;
 }
 .root.text.ring,
 .root.text:focus-visible {
-  outline-color: currentColor;
+  outline-color: transparent !important;
 }
 
 @media screen and (forced-colors: active) {
