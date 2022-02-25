@@ -1,0 +1,23 @@
+.root {
+  display: grid;
+  grid-template-areas: "stack";
+  width: fit-content;
+  place-items: center;
+}
+.root.start {
+  place-items: start;
+}
+.root.end {
+  place-items: end;
+}
+.root > * {
+  grid-area: stack;
+}
+
+.root > *:first-child {
+  position: relative;
+}
+
+.root > *[aria-hidden="true"] {
+  visibility: hidden !important;
+}

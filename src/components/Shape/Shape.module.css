@@ -1,0 +1,5 @@
+.root {
+  display: inline-flex;
+  pointer-events: none;
+  box-shadow: none;
+}

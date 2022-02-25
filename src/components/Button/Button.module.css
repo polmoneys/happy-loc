@@ -1,0 +1,197 @@
+.root {
+  display: inline-flex;
+  align-self: start;
+
+  min-height: var(--usable-height);
+  padding: 0 var(--gap-4);
+  background-color: var(--gray-3);
+  border: var(--border-width) solid currentColor;
+  box-shadow: var(--shadow);
+  outline: none;
+
+  color: inherit;
+  font: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: inherit;
+  letter-spacing: inherit;
+
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.root.ring,
+.root:focus-visible {
+  /* until :focus-visible has better browser support */
+  outline: var(--border-width) solid currentColor;
+  outline-offset: calc(var(--border-width) * 2);
+  outline-color: var(--gray-3);
+}
+
+.root:focus {
+  background-color: var(--gray-1);
+}
+
+.root:disabled,
+.root[disabled] {
+  opacity: var(--disabled-opacity);
+  cursor: no-drop;
+}
+
+.root.secondary {
+  background-color: var(--teal-3);
+}
+.root.secondary.ring,
+.root.secondary:focus-visible {
+  outline-color: var(--teal-4);
+}
+.root.text {
+  background-color: none;
+}
+.root.text.ring,
+.root.text:focus-visible {
+  outline-color: currentColor;
+}
+
+@media screen and (forced-colors: active) {
+  /* https://blogs.windows.com/msedgedev/2020/09/17/styling-for-windows-high-contrast-with-new-standards-for-forced-colors/ */
+  .root {
+    forced-color-adjust: none;
+    color: CanvasText;
+  }
+}
+
+.root svg {
+  pointer-events: none;
+}
+
+.start,
+.end,
+.center,
+.evenly {
+  align-items: center;
+}
+
+.start {
+  justify-content: flex-start;
+}
+
+.end {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}
+
+.evenly {
+  justify-content: space-evenly !important;
+}
+
+.buttonIcon > svg:last-child {
+  margin-left: 0.5em;
+}
+.buttonIcon > svg:first-child {
+  margin-right: 0.5em;
+}
+
+.stretch {
+  width: 100% !important;
+}
+
+.pressed {
+}
+
+.hovered {
+}
+
+/* 
+ Group
+*/
+
+.buttonGroup {
+  --butonGroup-display: inline-flex;
+  --butonGroup-flex-direction: row;
+  --butonGroup-group-direction: row;
+  align-items: stretch;
+  display: flex;
+  flex-direction: var(--butonGroup-group-direction);
+  flex-wrap: nowrap;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.buttonGroup.buttonGroupVertical {
+  --butonGroup-group-direction: column;
+}
+
+.buttonGroup > * {
+  -webkit-text-fill-color: currentColor;
+  white-space: nowrap;
+  display: flex;
+  flex-grow: 1;
+}
+
+.buttonGroup button {
+  outline: none !important;
+  border: var(--border-width) solid currentColor !important;
+}
+.buttonGroup.buttonGroupVertical > * {
+  width: 100%;
+}
+
+.buttonGroup.buttonGroupVertical > button:first-of-type {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+.buttonGroup.buttonGroupVertical > button:last-of-type {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.buttonGroup:not(.buttonGroupVertical) > button:first-of-type {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.buttonGroup:not(.buttonGroupVertical) > button:last-of-type {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.buttonGroup.buttonGroupVertical > * + * {
+  margin-top: calc(var(--border-width) * -1);
+}
+
+.buttonGroup:not(.buttonGroupVertical) > * + * {
+  margin-left: calc(var(--border-width) * -1);
+}
+
+/* Split Button */
+
+.buttonSplit button:first-of-type {
+  flex-grow: 1;
+  justify-content: center;
+}
+.buttonSplit button:last-of-type {
+  flex-grow: 0;
+}
+
+.onSplitMain {
+  background-color: var(--red-6);
+}
+
+.onSplitSecondary {
+  background-color: var(--orange-4);
+}
+.onSplitSecondary:focus {
+  background-color: var(--orange-2);
+}
+
+.idle {
+  /*opacity: 0.4 !important;*/
+}
+.active {
+  background-color: var(--red-2);
+}

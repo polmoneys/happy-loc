@@ -1,0 +1,11 @@
+.root {
+  --space-gap: 0.5rem;
+  --space-direction: row;
+  --space-wrap: nowrap;
+
+  width: 100%;
+  display: flex;
+  flex-direction: var(--space-direction);
+  gap: var(--space-gap);
+  flex-wrap: var(--space-wrap);
+}

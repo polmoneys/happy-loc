@@ -1,0 +1,31 @@
+.root {
+  width: 100%;
+  aspect-ratio: 1;
+  padding: var(--gap-5);
+  border: var(--border-width) solid currentColor;
+  align-items: center;
+}
+
+.title {
+  border-bottom: var(--border-width) solid currentColor;
+}
+.title p + p {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: var(--teal-3);
+  text-decoration-thickness: 3px;
+}
+
+.onSplitMain {
+  background-color: var(--teal-3);
+}
+
+.offSplitMain {
+}
+
+.onSplitSecondary {
+  background-color: var(--red-3);
+}
+
+.offSplitSecondary {
+}

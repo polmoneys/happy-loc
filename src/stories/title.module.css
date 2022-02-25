@@ -1,0 +1,11 @@
+.root {
+  border-bottom: var(--border-width) solid currentColor;
+  align-items: center;
+}
+
+.root p + p {
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: var(--teal-3);
+  text-decoration-thickness: 3px;
+}

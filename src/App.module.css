@@ -1,0 +1,11 @@
+.active {
+  background-color: var(--red-1);
+}
+
+.idle {
+}
+
+.list {
+  align-items: center;
+  border: var(--border-width) solid var(--gray-4);
+}

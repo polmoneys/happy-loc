@@ -1,0 +1,55 @@
+/* 
+@font-face {
+  font-family: 'my-font';
+  font-display: optional;
+  src: url(my-font.woff2) format('woff2');
+} 
+*/
+.helveticaNeue {
+  font-family: "Helvetica Neue LT Std", "Helvetica", "sans-serif";
+  font-weight: 400;
+  font-style: normal;
+}
+
+.medium {
+  font-family: "Helvetica Neue LT Std", "Helvetica", "sans-serif";
+  font-weight: 500;
+  font-style: normal;
+}
+.bold {
+  font-family: "Helvetica Neue LT Std", "Helvetica", "sans-serif";
+  font-weight: 600;
+  font-style: bold;
+}
+
+.thin {
+  font-family: "Helvetica Neue LT Std", "Helvetica", "sans-serif";
+  font-weight: 300;
+  font-style: normal;
+}
+
+.grotesk {
+  font-family: "HKGrotesk Black";
+  font-weight: 600;
+}
+
+.fontNumber {
+  font-variant-numeric: tabular-nums;
+}
+
+.fontTruncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* 
+https://github.com/polmoneys/css/blob/master/library/hyphens.css
+*/
+
+.fontFlow {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}

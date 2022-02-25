@@ -1,0 +1,97 @@
+.root {
+  --card-bg-gradient: rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow);
+  border: var(--border-width) solid currentColor;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.ratio {
+  --card-ratio: 16/9;
+  position: relative;
+  padding-top: calc((1 / (var(--card-ratio))) * 100%);
+}
+
+@supports (aspect-ratio: 1) {
+  .ratio {
+    aspect-ratio: var(--card-ratio);
+    padding-top: initial;
+  }
+}
+
+.root > div:first-child {
+  z-index: var(--defaut-z);
+}
+
+.root > * {
+  z-index: var(--float-z);
+}
+
+.media {
+  overflow: hidden;
+  width: 100%;
+}
+
+.media img {
+  --background-img-brightness: 0.95;
+  --background-img-saturate: 1.25;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: brightness(var(--background-img-brightness))
+    saturate(var(--background-img-saturate));
+}
+
+/* Card state if event handlers are in use */
+
+.focusWithin {
+}
+
+.pressed {
+}
+
+.hovered {
+}
+
+.bottom::after,
+.top::after {
+  content: "";
+  z-index: var(--above) !important;
+  position: absolute;
+  width: 100%;
+  height: min(12vh, 120px);
+}
+.bottom::after {
+  bottom: 0;
+  left: 0;
+  min-height: 100px;
+  /* background-blend-mode: multiply; */
+  background-image: linear-gradient(
+    to bottom,
+    transparent 15%,
+    var(--card-bg-gradient) 100%
+  );
+}
+
+.top::after {
+  top: 0;
+  left: 0;
+  min-height: 100px;
+  background-image: linear-gradient(
+    to top,
+    transparent 25%,
+    var(--card-bg-gradient) 100%
+  );
+}
+
+/* .top > *:not(img),
+.bottom > *:not(img) {
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+} */
+
+.noShadow {
+  box-shadow: none !important;
+}

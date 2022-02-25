@@ -1,0 +1,50 @@
+.root {
+  position: relative;
+}
+
+.root.checked {
+  color: var(--teal-4);
+}
+
+.root [data-reach-custom-checkbox-container] {
+  display: inline-flex;
+  position: relative;
+  cursor: default;
+  width: 2em;
+  height: 2em;
+  border: var(--border-width) solid currentColor;
+}
+
+.root:focus-within * {
+  outline: none !important;
+  border-color: var(--red-5);
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.root [data-reach-custom-checkbox-input] {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  z-index: 1 !important;
+  cursor: inherit;
+  box-shadow: none !important;
+  outline: none;
+}
+
+.root label {
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2);
+}
+
+.root svg {
+  position: absolute;
+  transform: translate(0.25em, 0.3em);
+}
