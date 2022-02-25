@@ -1,4 +1,10 @@
-# Happy LOC
+# TLDR
+
+>Alma se tiene a veces /
+nadie la posee sin pausa y /
+para siempre
+
+**Wislawa Szymborska**
 
 React Components and Hooks that make me happy. 
 
