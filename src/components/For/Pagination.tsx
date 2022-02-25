@@ -15,6 +15,7 @@ const Pagination = (props: Props) => {
       <Button
         key={i}
         color="text"
+        ring={false}
         stretch={current === i}
         onClick={e => handleChange(e, i)}
       >
