@@ -17,9 +17,10 @@ import {
 } from "react";
 
 import useStyles from "../../hooks/UseStyles/UseStyles";
+import { DefaultProps } from "../types";
 import styles from "./Font.module.css";
 
-interface Props extends AriaAttributes {
+interface Props extends AriaAttributes, Pick<DefaultProps, "id"> {
   size?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
   /** Base for composition */
   children:
