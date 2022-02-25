@@ -1,0 +1,112 @@
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.root [data-reach-listbox-button] {
+  min-height: var(--usable-height);
+  height: max-content;
+  background-color: var(--gray-3);
+  padding: 0 var(--gap-4);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font: inherit;
+  outline: var(--border-width) solid currentColor;
+}
+.root [data-reach-listbox-input] {
+  display: flex;
+  width: 100%;
+  flex: 1;
+}
+.root [data-reach-listbox-button]:focus,
+.root [data-reach-listbox-button]:active {
+  border-radius: 0 !important;
+}
+
+.root [data-reach-listbox-button] span {
+  display: inline-flex;
+}
+
+.root [data-reach-listbox-button] svg {
+  min-width: 12px;
+  margin-left: auto;
+}
+
+.portal[data-reach-listbox-popover] {
+  padding: 0;
+}
+
+.portal[data-reach-listbox-group-label] {
+  text-transform: capitalize;
+  font-weight: 400 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+}
+
+.portal[data-reach-listbox-group-label],
+.portal[data-reach-listbox-option] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  user-select: none;
+  cursor: pointer;
+  /* a/link */
+  color: currentColor;
+  font: inherit;
+  text-decoration: initial;
+  /* both */
+  min-height: var(--usable-height);
+  min-width: 0;
+  padding: 0 var(--gap-3);
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+}
+.portal[data-reach-listbox-option][data-current-nav] {
+  border-radius: 0 !important;
+}
+
+.portal[data-reach-listbox-list][data-focus-visible-added] {
+}
+
+.portal[data-reach-listbox-option]:hover,
+.portal[data-reach-listbox-option]:focus,
+.portal[data-reach-listbox-option][data-current-nav],
+.portal[data-reach-listbox-option][data-current-selected] {
+  background-color: var(--teal-4);
+}
+
+.portal[data-reach-listbox-popover][hidden] {
+  display: none;
+}
+
+.portal[data-reach-listbox-popover] {
+  /* problematic */
+  transform: translateY(-4px);
+  z-index: 2;
+  /* end problematic */
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  min-width: -moz-fit-content;
+  min-width: -webkit-min-content;
+  min-width: min-content;
+  background-color: var(--gray-3);
+  outline: var(--border-width) solid currentColor;
+}
+
+.portal[data-reach-listbox-option][aria-disabled="true"],
+.portal[data-reach-listbox-button][aria-disabled="true"] {
+  opacity: var(--disabled-opacity);
+  cursor: no-drop;
+}
+
+.portal,
+.capitalize {
+  text-transform: capitalize;
+}
