@@ -1,5 +1,7 @@
-import { FiCrosshair } from "react-icons/fi";
+import { Fragment } from "react";
+import { FiCrosshair, FiHeart } from "react-icons/fi";
 
+import { HelveticaNeue } from "@/components/Font/Font";
 import { ObjectLike } from "@/components/For/For";
 
 import styles from "./frame.module.css";
@@ -64,3 +66,46 @@ export const DEMO_FOR: Array<ObjectLike> = [
     name: "Circle",
   },
 ];
+
+export const DEMO_LISTBOX = {
+  tacos: [
+    {
+      id: 0,
+      value: "asada",
+      disabled: false,
+      children: <Fragment>Tira Asada</Fragment>,
+    },
+    {
+      id: 1,
+      value: "pollo",
+      disabled: false,
+      children: (
+        <Fragment>
+          Pollo <HelveticaNeue>Sold Out!</HelveticaNeue>
+        </Fragment>
+      ),
+    },
+    {
+      id: 2,
+      value: "pastor",
+      disabled: false,
+      children: (
+        <Fragment>
+          Pastor
+          <FiHeart />
+        </Fragment>
+      ),
+    },
+    { id: 3, value: "lengua", disabled: false, children: "Lengua" },
+  ],
+  catalan: [
+    { id: 4, value: "sobrassada", disabled: false, children: "Sobrassada" },
+    {
+      id: 5,
+      value: "ensaimada",
+      disabled: false,
+      children: "Ensaimada cabell àngel",
+    },
+    { id: 6, value: "buti", disabled: false, children: "BotifarraNegre" },
+  ],
+};

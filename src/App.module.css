@@ -7,5 +7,5 @@
 
 .list {
   align-items: center;
-  border: var(--border-width) solid var(--gray-4);
+  border: var(--border-width) solid currentColor;
 }

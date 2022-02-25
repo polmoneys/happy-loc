@@ -20,6 +20,7 @@ import { HelveticaNeue, HelveticaNeueBold } from "@/components/Font/Font";
 import For, { ObjectLike } from "@/components/For/For";
 import Pagination, { paginateArray } from "@/components/For/Pagination";
 import Grid from "@/components/Grid/Grid";
+import Listbox from "@/components/Listbox/Listbox";
 import Shape from "@/components/Shape/Shape";
 import Shelf from "@/components/Shelf/Shelf";
 import Stack from "@/components/Stack/Stack";
@@ -30,6 +31,7 @@ import {
   DEMO_BUTTON_SPLIT,
   DEMO_CHECKBOXES,
   DEMO_FOR,
+  DEMO_LISTBOX,
 } from "@/stories/datum";
 import Frame from "@/stories/frame";
 import Title from "@/stories/title";
@@ -170,7 +172,14 @@ export default function App() {
             ))}
           </Shelf>
         </Frame>
-
+        <Frame title="Listbox">
+          <Listbox
+            label={"Choose your catalan delight"}
+            initial="ensaimada"
+            groups={DEMO_LISTBOX}
+            onSelect={choice => console.log(choice)}
+          />
+        </Frame>
         <Frame title="For + Pagination" subtitle="Shape">
           <For of={paginatedClient.data}>
             {({ item, key }: ObjectLike) => {
