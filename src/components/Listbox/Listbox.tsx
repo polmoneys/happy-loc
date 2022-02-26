@@ -30,6 +30,7 @@ import {
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 import { HelveticaNeue } from "@/components/Font/Font";
+import Shelf from "@/components/Shelf/Shelf";
 
 import { DefaultProps, SlotsProps } from "../types";
 import styles from "./Listbox.module.css";
@@ -86,7 +87,7 @@ const ListBox = (props: Props) => {
   );
 
   return (
-    <div className={styles.root}>
+    <Shelf direction="column" className={styles.root}>
       {LabelHiddenIfGroup}
       <ListboxInput
         aria-labelledby={id}
@@ -102,7 +103,7 @@ const ListBox = (props: Props) => {
                 data-value={value}
                 className={styles.capitalize}
               >
-                {value}
+                {valueLabel}
               </HelveticaNeue>
               {isExpanded ? <FiChevronUp /> : <FiChevronDown />}
             </ListboxButton>
@@ -140,7 +141,7 @@ const ListBox = (props: Props) => {
           </Fragment>
         )}
       </ListboxInput>
-    </div>
+    </Shelf>
   );
 };
 

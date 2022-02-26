@@ -13,7 +13,7 @@ interface Props {
 const Title = (props: Props) => {
   const { children, ...rest } = props;
   return (
-    <Shelf p={3} className={styles.root}>
+    <Shelf balanced p={3} className={styles.root}>
       <HelveticaNeueBold size={6} className="mr-auto" {...rest}>
         {children}
       </HelveticaNeueBold>

@@ -1,6 +1,5 @@
 .root {
   border-bottom: var(--border-width) solid currentColor;
-  align-items: center;
 }
 
 .root p + p {
