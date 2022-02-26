@@ -19,6 +19,7 @@ import {
   ListboxPopover,
 } from "@reach/listbox";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
+import isNil from "lodash.isnil";
 import {
   cloneElement,
   Fragment,
@@ -75,7 +76,7 @@ const ListBox = (props: Props) => {
 
   const LabelHiddenIfGroup = (
     <WrapIf
-      condition={groups !== undefined}
+      condition={!isNil(groups)}
       container={children => <VisuallyHidden>{children}</VisuallyHidden>}
     >
       <HelveticaNeue className={styles.label} id={id}>

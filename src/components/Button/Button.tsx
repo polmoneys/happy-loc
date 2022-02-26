@@ -82,7 +82,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       if (align === "end") return styles.end;
     }, [align]);
 
-    const hasColor = color !== undefined;
+    const hasColor = !isNil(color);
     const { output } = useStyles(
       styles.root,
       className,

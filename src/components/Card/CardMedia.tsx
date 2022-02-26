@@ -1,3 +1,4 @@
+import isNil from "lodash.isnil";
 import { Fragment, useState } from "react";
 
 import useStyles from "../../hooks/UseStyles/UseStyles";
@@ -22,9 +23,9 @@ const CardMedia = (props: CardMediaProps) => {
 
   let sourcesTags: unknown = <Fragment />;
 
-  if (sources !== undefined) {
+  if (!isNil(sources)) {
     sourcesTags = Object.keys(sources).map(key => {
-      const hasSource = sources?.[key] !== undefined;
+      const hasSource = !isNil(sources?.[key]);
 
       return hasSource ? (
         <source key={key} type={`image/${key}`} srcSet={sources[key]} />

@@ -1,3 +1,4 @@
+import isNil from "lodash.isnil";
 import { useEffect, useState } from "react";
 
 /**
@@ -18,7 +19,7 @@ function useMq<T extends string>(
   const [value, setValue] = useState<T>(getValue);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (isNil(typeof window)) return;
     // Note: By defining getValue outside of useEffect we ensure that it has ...
     // ... current values of hook args (as this hook callback is created once on mount).
     const handler = () => setValue(getValue);
