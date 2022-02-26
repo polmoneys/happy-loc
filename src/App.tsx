@@ -65,7 +65,7 @@ export default function App() {
   const [selection, { updateSelection }] = useSelectedState(
     DEMO_BUTTON_GROUP.map(x => x.id),
     "1",
-    (i: any) => console.log(i),
+    (i: any) => console.log(`Selected button ID ${i}`),
     true,
     true
   );
@@ -188,7 +188,7 @@ export default function App() {
               const itemName = i?.name as string;
 
               return (
-                <Shelf p={4} className={styles.list}>
+                <Shelf key={key as number} p={4} className={styles.list}>
                   <Shape sides={itemId} fill="var(--teal-3)" />
                   <HelveticaNeueBold className="ml-auto">
                     {itemName}
