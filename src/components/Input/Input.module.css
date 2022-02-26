@@ -1,0 +1,44 @@
+.root {
+  width: 100%;
+}
+
+.root:focus-within {
+}
+
+.root input {
+  caret-color: var(--teal-4);
+  appearance: none;
+  font-family: inherit;
+  font-size: 100%;
+  width: 100%;
+  flex-grow: 1;
+  min-height: var(--usable-height);
+  padding: 0 var(--gap-3);
+  border: var(--border-width) solid currentColor;
+}
+
+.root input:focus {
+  outline: none;
+  border-radius: 0;
+}
+
+.root label::after {
+  content: "\A";
+  white-space: pre;
+}
+
+.root input::-webkit-input-placeholder {
+  color: var(--teal-4);
+}
+.root input::-ms-input-placeholder {
+  color: var(--teal-4);
+}
+
+.root.invalid input {
+  border-bottom: calc(var(--border-width) * 2) solid var(--red-3);
+}
+
+.root:not(.invalid) input,
+.root:not(.invalid).required input {
+  border-bottom: calc(var(--border-width) * 2) solid var(--teal-3);
+}

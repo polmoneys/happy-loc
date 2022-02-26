@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { FiCrosshair, FiHeart } from "react-icons/fi";
+import * as yup from "yup";
 
 import { HelveticaNeue } from "@/components/Font/Font";
 import { ObjectLike } from "@/components/For/For";
@@ -109,3 +110,8 @@ export const DEMO_LISTBOX = {
     { id: 6, value: "buti", disabled: false, children: "BotifarraNegre" },
   ],
 };
+
+export const VALIDATE_URL = yup.string().url();
+export const VALIDATE_USERNAME = yup.string().max(8, "8 chars max");
+export type SchemaURL = yup.InferType<typeof VALIDATE_URL>;
+export type SchemaUsername = yup.InferType<typeof VALIDATE_USERNAME>;
