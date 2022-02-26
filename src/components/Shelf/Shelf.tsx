@@ -6,6 +6,7 @@
  * Feedback at polmoneys on github
  *
  */
+import isNil from "lodash.isnil";
 import { ElementType } from "react";
 
 import useStyles from "../../hooks/UseStyles/UseStyles";
@@ -16,7 +17,9 @@ export interface Props
   extends Pick<DefaultProps, "as" | "className" | "children"> {
   gap?: string;
   direction?: "row" | "column";
+  balanced?: boolean;
   wrap?: boolean;
+  /* Padding */
   p?: 1 | 2 | 3 | 4 | 5;
   py?: 1 | 2 | 3 | 4 | 5;
   px?: 1 | 2 | 3 | 4 | 5;
@@ -25,33 +28,46 @@ export interface Props
 }
 
 const Shelf = (props: Props) => {
-  const { as, className, children, gap, direction, wrap, p, px, py, pt, pb } =
-    props;
+  const {
+    as,
+    className,
+    children,
+    gap,
+    direction,
+    wrap,
+    p,
+    px,
+    py,
+    pt,
+    pb,
+    balanced = false,
+  } = props;
   const { output } = useStyles(
     styles.root,
     className,
-    p !== undefined && `p ${[...Array(p).keys()].map(k => "$").join("")}`,
-    px !== undefined && `px ${[...Array(px).keys()].map(k => "$").join("")}`,
-    py !== undefined && `py ${[...Array(py).keys()].map(k => "$").join("")}`,
-    pb !== undefined && `py ${[...Array(pb).keys()].map(k => "$").join("")}`,
-    pt !== undefined && `py ${[...Array(pt).keys()].map(k => "$").join("")}`
+    balanced && styles.rowYCenter,
+    !isNil(p) && `p ${[...Array(p).keys()].map(k => "$").join("")}`,
+    !isNil(px) && `px ${[...Array(px).keys()].map(k => "$").join("")}`,
+    !isNil(py) && `py ${[...Array(py).keys()].map(k => "$").join("")}`,
+    !isNil(pb) && `py ${[...Array(pb).keys()].map(k => "$").join("")}`,
+    !isNil(pt) && `py ${[...Array(pt).keys()].map(k => "$").join("")}`
   );
 
   let propsToStyles: CSSProps = {};
 
-  if (gap !== undefined) {
+  if (!isNil(gap)) {
     propsToStyles = {
       ...propsToStyles,
       ...{ "--space-gap": gap },
     };
   }
-  if (direction !== undefined) {
+  if (!isNil(direction)) {
     propsToStyles = {
       ...propsToStyles,
       ...{ "--space-direction": direction },
     };
   }
-  if (wrap !== undefined) {
+  if (!isNil(wrap)) {
     propsToStyles = {
       ...propsToStyles,
       ...{ "--space-wrap": wrap ? "wrap" : "nowrap" },

@@ -9,3 +9,7 @@
   gap: var(--space-gap);
   flex-wrap: var(--space-wrap);
 }
+
+.rowYCenter {
+  align-items: center;
+}
