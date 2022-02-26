@@ -20,6 +20,7 @@ import { HelveticaNeue, HelveticaNeueBold } from "@/components/Font/Font";
 import For, { ObjectLike } from "@/components/For/For";
 import Pagination, { paginateArray } from "@/components/For/Pagination";
 import Grid from "@/components/Grid/Grid";
+import Input from "@/components/Input/Input";
 import Listbox from "@/components/Listbox/Listbox";
 import Shape from "@/components/Shape/Shape";
 import Shelf from "@/components/Shelf/Shelf";
@@ -32,6 +33,8 @@ import {
   DEMO_CHECKBOXES,
   DEMO_FOR,
   DEMO_LISTBOX,
+  VALIDATE_URL,
+  VALIDATE_USERNAME,
 } from "@/stories/datum";
 import Frame from "@/stories/frame";
 import Title from "@/stories/title";
@@ -76,6 +79,7 @@ export default function App() {
   const handleChange = (index: string) => {
     updateSelection(index);
   };
+
   return (
     <main className="app">
       <header className="full">
@@ -179,6 +183,28 @@ export default function App() {
             groups={DEMO_LISTBOX}
             onSelect={choice => console.log(choice)}
           />
+        </Frame>
+
+        <Frame title="Input" subtitle="Validation">
+          <form onSubmit={() => console.log("SUBMITING")}>
+            <Shelf direction="column" gap="var(--gap-3)">
+              <Input
+                required
+                label="Username"
+                id="username"
+                name="username"
+                validation={VALIDATE_USERNAME}
+                onChange={d => console.log(d)}
+              />
+              <Input
+                label="Website"
+                name="url"
+                id="url"
+                validation={VALIDATE_URL}
+                onChange={d => console.log(d)}
+              />
+            </Shelf>
+          </form>
         </Frame>
         <Frame title="For + Pagination" subtitle="Shape">
           <For of={paginatedClient.data}>
