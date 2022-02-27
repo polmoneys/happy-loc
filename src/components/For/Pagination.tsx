@@ -1,6 +1,8 @@
 import Button from "@/components/Button/Button";
 import Shelf from "@/components/Shelf/Shelf";
 
+import styles from "./For.module.css";
+
 interface Props {
   count: number;
   current: number;
@@ -17,6 +19,7 @@ const Pagination = (props: Props) => {
         color="text"
         ring={false}
         stretch={current === i}
+        className={styles.border}
         onClick={e => handleChange(e, i)}
       >
         {i}

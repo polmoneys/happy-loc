@@ -49,6 +49,7 @@
 .root.text {
   background-color: transparent !important;
   box-shadow: none !important;
+  border: none;
   font-weight: bold;
 }
 .root.text.ring,

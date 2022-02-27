@@ -1,3 +1,7 @@
 .loading {
   opacity: 0.9;
 }
+
+.border {
+  border: var(--border-width) solid currentColor !important;
+}
