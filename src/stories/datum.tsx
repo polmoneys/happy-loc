@@ -115,3 +115,38 @@ export const VALIDATE_URL = yup.string().url();
 export const VALIDATE_USERNAME = yup.string().max(8, "8 chars max");
 export type SchemaURL = yup.InferType<typeof VALIDATE_URL>;
 export type SchemaUsername = yup.InferType<typeof VALIDATE_USERNAME>;
+
+export const DEMO_FOLDER_CATEGORIES = [
+  { id: 1, parent_id: null },
+  { id: 2, parent_id: 1 },
+  { id: 3, parent_id: 1 },
+  { id: 4, parent_id: 2 },
+  { id: 5, parent_id: 4 },
+];
+export const DEMO_FOLDER = {
+  name: "Desktop folder",
+  children: [
+    {
+      name: "Pics",
+      children: [
+        {
+          name: "Cats",
+        },
+      ],
+    },
+    {
+      name: "Important stuff",
+      children: [
+        {
+          name: "Memes",
+        },
+        {
+          name: "Funny pics",
+        },
+      ],
+    },
+    {
+      name: "Blog post drafts",
+    },
+  ],
+};

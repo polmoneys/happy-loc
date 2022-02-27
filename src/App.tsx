@@ -16,6 +16,7 @@ import ButtonSplit from "@/components/Button/variants/ButtonSplit";
 import Card from "@/components/Card/Card";
 import CardMedia from "@/components/Card/CardMedia";
 import Checkbox from "@/components/Checkbox/Checkbox";
+import Folder from "@/components/Folder/Folder";
 import { HelveticaNeue, HelveticaNeueBold } from "@/components/Font/Font";
 import For, { ObjectLike } from "@/components/For/For";
 import Pagination, { paginateArray } from "@/components/For/Pagination";
@@ -31,6 +32,8 @@ import {
   DEMO_BUTTON_GROUP,
   DEMO_BUTTON_SPLIT,
   DEMO_CHECKBOXES,
+  DEMO_FOLDER,
+  DEMO_FOLDER_CATEGORIES,
   DEMO_FOR,
   DEMO_LISTBOX,
   VALIDATE_URL,
@@ -206,6 +209,12 @@ export default function App() {
             </Shelf>
           </form>
         </Frame>
+        <Frame title="Folder" subtitle="Nested structures">
+          <Shelf direction="column" gap="var(--gap-3)">
+            <Folder folder={DEMO_FOLDER} />
+          </Shelf>
+        </Frame>
+
         <Frame title="For + Pagination" subtitle="Shape">
           <For of={paginatedClient.data}>
             {({ item, key }: ObjectLike) => {
