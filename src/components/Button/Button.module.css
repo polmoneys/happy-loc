@@ -16,6 +16,7 @@
   line-height: inherit;
   letter-spacing: inherit;
 
+  cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
