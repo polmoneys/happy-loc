@@ -1,0 +1,15 @@
+.root {
+  list-style: none;
+}
+
+.root > * {
+  background-color: var(--gray-2);
+  min-height: var(--usable-height);
+}
+
+.parent {
+  padding-left: var(--gap-5);
+}
+.noParent {
+  padding-left: calc(var(--gap-5) * 3);
+}

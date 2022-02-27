@@ -23,6 +23,8 @@ export interface DefaultProps {
     | "h1"
     | "h2"
     | "h3"
+    | "ul"
+    | "li"
     | "wbr"
     | "div";
   /** Base for composition */
