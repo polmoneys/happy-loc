@@ -2,7 +2,7 @@
   border-bottom: var(--border-width) solid currentColor;
 }
 
-.root p + p {
+.root button > p {
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-color: var(--teal-3);
