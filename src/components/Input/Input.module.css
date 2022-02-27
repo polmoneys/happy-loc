@@ -35,6 +35,7 @@
 }
 
 .root.invalid input {
+  caret-color: var(--red-3);
   border-bottom: calc(var(--border-width) * 2) solid var(--red-3);
 }
 
