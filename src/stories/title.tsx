@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-import { HelveticaNeue, HelveticaNeueBold } from "@/components/Font/Font";
 import Button from "@/components/Button/Button";
+import { HelveticaNeue, HelveticaNeueBold } from "@/components/Font/Font";
 import Shelf from "@/components/Shelf/Shelf";
 import useNewBrowserTab from "@/hooks/UseNewBrowserTab/UseNewBrowserTab";
 

@@ -55,11 +55,11 @@
   --casing: uppercase;
   --set-solid: 1;
   --chinesse-line-height: 1.8;
-  --gap-1: 0.2em;
-  --gap-2: 0.4em;
-  --gap-3: 0.6em;
-  --gap-4: 0.8em;
-  --gap-5: 1em;
+  --gap-1: 0.4em;
+  --gap-2: 0.6em;
+  --gap-3: 0.8em;
+  --gap-4: 1em;
+  --gap-5: 1.3em;
   --gap-6: 1.2em;
 }
 :root {
@@ -503,4 +503,34 @@ html {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.paper {
+  border: 2px solid var(--gray-8);
+}
+
+.paper.\! {
+  background-color: var(--teal-2);
+  border-color: transparent;
+}
+.paper.\!\! {
+  background-color: var(--teal-3);
+  border-color: transparent;
+}
+.paper.\!\!\! {
+  background-color: var(--teal-5);
+  border-color: transparent;
+}
+
+/*
+  code below needs love aka. some thinking
+*/
+
+.horizontal-scroll-root-active {
+  opacity: 0.8;
+}
+
+.mini-card-portrait {
+  min-width: 130px;
+  border-radius: var(--border-radius);
 }

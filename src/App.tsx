@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import {
+  FiAlignLeft,
+  FiAlignRight,
+  FiBarChart,
+  FiBattery,
+  FiBook,
   FiBookmark,
+  FiBriefcase,
   FiCamera,
   FiCameraOff,
   FiShare,
@@ -21,6 +27,7 @@ import { HelveticaNeue, HelveticaNeueBold } from "@/components/Font/Font";
 import For, { ObjectLike } from "@/components/For/For";
 import Pagination, { paginateArray } from "@/components/For/Pagination";
 import Grid from "@/components/Grid/Grid";
+import HorizontalScroll from "@/components/HorizontalScroll/HorizontalScroll";
 import Input from "@/components/Input/Input";
 import Listbox from "@/components/Listbox/Listbox";
 import Shape from "@/components/Shape/Shape";
@@ -39,6 +46,7 @@ import {
   VALIDATE_USERNAME,
 } from "@/stories/datum";
 import Frame from "@/stories/frame";
+import Stat from "@/stories/stat";
 import Title from "@/stories/title";
 
 import styles from "./App.module.css";
@@ -87,7 +95,11 @@ export default function App() {
       <header className="full">
         <Title data-testid="title">
           HAPPY L
-          <FiSmile color="var(--teal-4)" />C
+          <FiSmile
+            color="var(--teal-4)"
+            style={{ transform: "translateY(3px)" }}
+          />
+          C
         </Title>
       </header>
       <Grid>
@@ -248,6 +260,125 @@ export default function App() {
               handleChange={(event, page) => setCurrentPage(page)}
             />
           </Shelf>
+        </Frame>
+        <Frame noGap title="Horizontal scroll">
+          <HorizontalScroll progress={false}>
+            <Shelf gap="1em" className="py $$$$$">
+              <Button onClick={() => ({})}>
+                <FiAlignLeft />
+              </Button>
+              <Button onClick={() => ({})}>
+                <FiAlignRight />
+              </Button>
+              <ButtonGroup className={styles.unsetBorderRadius}>
+                {DEMO_BUTTON_GROUP.map(item => (
+                  <ButtonGroup.Button
+                    key={item.id}
+                    className={
+                      selection.includes(item.id) ? styles.active : styles.idle
+                    }
+                    onClick={() => handleChange(item.id)}
+                  >
+                    {item.label}
+                  </ButtonGroup.Button>
+                ))}
+              </ButtonGroup>
+              <Button onClick={() => ({})}>
+                <FiBarChart />
+              </Button>
+              <Button onClick={() => ({})}>
+                <FiBattery />
+              </Button>
+              <Button onClick={() => ({})}>
+                <FiBook />
+              </Button>
+              <Button onClick={() => ({})}>
+                <FiBriefcase />
+              </Button>
+            </Shelf>
+          </HorizontalScroll>
+
+          <HorizontalScroll progress={false}>
+            <Shelf gap="2em" className="py $$$$$">
+              <Stat className="paper">
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Stat>
+              <Stat className="paper !!">
+                <FiStar />
+              </Stat>
+              <Stat className="paper !!!">
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Stat>
+              <Stat className="paper !!">
+                <FiStar />
+              </Stat>
+              <Stat className="paper !!!">
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Stat>
+              <Stat className="paper !!!">
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Stat>
+              <Stat className="paper !!!">
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Stat>
+              <Stat className="paper !!">
+                <FiStar />
+              </Stat>
+            </Shelf>
+          </HorizontalScroll>
+
+          <HorizontalScroll progress={false}>
+            <Shelf gap="1em" className="py $$$$$">
+              <Shelf
+                direction="column"
+                className="mini-card-portrait p $$ ratio ## paper"
+              >
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Shelf>
+              <Shelf
+                direction="column"
+                className="mini-card-portrait p $$ ratio ## paper !!"
+              >
+                <FiStar />
+              </Shelf>
+              <Shelf
+                direction="column"
+                className="mini-card-portrait p $$ ratio ## paper !!!"
+              >
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Shelf>
+              <Shelf
+                direction="column"
+                className="mini-card-portrait p $$ ratio ## paper !!"
+              >
+                <FiStar />
+              </Shelf>
+              <Shelf
+                direction="column"
+                className="mini-card-portrait p $$ ratio ## paper !!!"
+              >
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Shelf>
+              <Shelf
+                direction="column"
+                className="mini-card-portrait p $$ ratio ## paper !!!"
+              >
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Shelf>
+              <Shelf
+                direction="column"
+                className="mini-card-portrait p $$ ratio ## paper !!!"
+              >
+                <HelveticaNeue>Fuck Putin</HelveticaNeue>
+              </Shelf>
+              <Shelf
+                direction="column"
+                className="mini-card-portrait p $$ ratio ## paper !!"
+              >
+                <FiStar />
+              </Shelf>
+            </Shelf>
+          </HorizontalScroll>
         </Frame>
       </Grid>
       <Frame title="Card + Ratio">

@@ -9,15 +9,16 @@ interface Props {
   children: ReactNode;
   title: string;
   subtitle?: string;
+  noGap?: boolean;
 }
 
 const Frame = (props: Props) => {
-  const { children, title, subtitle } = props;
+  const { children, title, subtitle, noGap = false } = props;
   return (
     <Shelf
       as="section"
       className={styles.root}
-      gap="var(--gap-5)"
+      gap={noGap ? "0" : "var(--gap-5)"}
       direction="column"
     >
       <Shelf pb={4} className={styles.title}>
