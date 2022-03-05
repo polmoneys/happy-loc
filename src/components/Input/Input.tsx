@@ -129,9 +129,17 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
           />
           <HelveticaNeue id={`${id}-error`} aria-live="polite">
             {valid ? (
-              <FiCheckCircle size="28px" color="var(--teal-3)" />
+              <FiCheckCircle
+                size="28px"
+                color="var(--teal-3)"
+                aria-label="valid input"
+              />
             ) : (
-              <FiXCircle size="28px" color="var(--red-3)" />
+              <FiXCircle
+                size="28px"
+                color="var(--red-3)"
+                aria-label="invalid input"
+              />
             )}
           </HelveticaNeue>
         </Shelf>
