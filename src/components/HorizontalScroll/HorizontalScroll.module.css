@@ -1,0 +1,43 @@
+.root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.viewport {
+  white-space: nowrap;
+  user-select: none;
+  cursor: grab;
+  backface-visibility: hidden;
+  will-change: transform;
+  margin-right: var(--gap-3);
+}
+
+.viewport > * {
+  user-select: none;
+}
+
+.progress {
+  position: relative;
+  height: 2px;
+  width: 90%;
+  background-color: var(--gray-2);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.progress[aria-hidden="true"] {
+  background-color: transparent;
+  height: 0.01px;
+  margin: 0;
+}
+
+.bar {
+  position: absolute;
+  height: 2px;
+  width: 0%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--gray-4);
+}
