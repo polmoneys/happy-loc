@@ -59,6 +59,7 @@ const Card = forwardRef((props: Props, ref) => {
     onStartHover,
     gradient,
     shadowless = true,
+    /* Same 'id' as the title of 'children' */
     ariaLabelledby,
   } = props;
 
