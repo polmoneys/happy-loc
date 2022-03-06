@@ -49,7 +49,10 @@ Finally, the exotic **useNewBrowserTab**.
 ### Roadmap 
 
 [-] Improve unit testing
+
 [-] Publish demo
+
+[-] Twitter 🧵🙃
 
 ### Inspiration 💐
 
