@@ -13,3 +13,13 @@
 .rowYCenter {
   align-items: center;
 }
+
+.colToRow {
+  flex-direction: column !important;
+}
+
+@media (orientation: landscape) {
+  .colToRow {
+    flex-direction: row !important;
+  }
+}

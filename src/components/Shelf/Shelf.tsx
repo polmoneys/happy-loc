@@ -16,7 +16,7 @@ import styles from "./Shelf.module.css";
 export interface Props
   extends Pick<DefaultProps, "as" | "className" | "children"> {
   gap?: string;
-  direction?: "row" | "column";
+  direction?: "row" | "column" | "colToRow";
   balanced?: boolean;
   wrap?: boolean;
   /* Padding */
@@ -42,8 +42,12 @@ const Shelf = (props: Props) => {
     pb,
     balanced = false,
   } = props;
+
+  const isColToRow = direction === "colToRow";
+
   const { output } = useStyles(
     styles.root,
+    isColToRow && styles.colToRow,
     className,
     balanced && styles.rowYCenter,
     !isNil(p) && `p ${[...Array(p).keys()].map(k => "$").join("")}`,
@@ -62,11 +66,14 @@ const Shelf = (props: Props) => {
     };
   }
   if (!isNil(direction)) {
-    propsToStyles = {
-      ...propsToStyles,
-      ...{ "--space-direction": direction },
-    };
+    if (!isColToRow) {
+      propsToStyles = {
+        ...propsToStyles,
+        ...{ "--space-direction": direction },
+      };
+    }
   }
+
   if (!isNil(wrap)) {
     propsToStyles = {
       ...propsToStyles,
