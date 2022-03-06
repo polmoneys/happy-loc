@@ -6,7 +6,7 @@
 
 **Wislawa Szymborska**
 
-React Components and Hooks that make me happy. 
+React Components and Hooks that make me **happy**. 
 
 CSS behind has it's own [repository](https://github.com/polmoneys/mental-model).
 
@@ -27,6 +27,29 @@ CSS behind has it's own [repository](https://github.com/polmoneys/mental-model).
 
    npm run test:e2e
 ```
+
+### Components overview 
+
+Primitives like **Font**, **Button**, **Input**, **Checkbox** that you can compose into more complex pieces of UI. 
+
+Layout oriented components **Shelf**, **Stack**, **Grid** or **HorizontalScroll**. 
+
+Rich user interactions like **Listbox** or **Folder**.
+
+**For** or **Card** to tame content. **Shape** for delight. 
+
+### Hooks overview 
+
+Primitives like **useMq** or **useStyles**.
+
+Abstractions to deal with items and how them relate as **useSelectedState** or **useMixedState**.
+
+Finally, the exotic **useNewBrowserTab**. 
+
+### Roadmap 
+
+[-] Improve unit testing
+[-] Publish demo
 
 ### Inspiration 💐
 
