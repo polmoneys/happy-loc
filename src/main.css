@@ -331,6 +331,9 @@ h3:first-letter {
   margin-right: auto;
 }
 
+.fix {
+  min-width: 0;
+}
 .center-y {
   align-items: center;
 }
@@ -484,10 +487,10 @@ h3:first-letter {
   display: grid;
   grid-template-columns: var(--app-gutter) 1fr var(--app-gutter);
 }
-.app > * {
+.app .container {
   grid-column: 2/-2;
 }
-.app > .full {
+.app .full {
   grid-column: 1/-1;
 }
 

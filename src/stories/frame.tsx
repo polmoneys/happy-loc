@@ -15,18 +15,19 @@ interface Props {
 const Frame = (props: Props) => {
   const { children, title, subtitle, noGap = false } = props;
   return (
-    <Shelf
-      as="section"
-      className={styles.root}
-      gap={noGap ? "0" : "var(--gap-5)"}
-      direction="column"
-    >
-      <Shelf pb={4} className={styles.title}>
-        <HelveticaNeueBold> {title}</HelveticaNeueBold>
-        <HelveticaNeue className="ml-auto"> {subtitle}</HelveticaNeue>
+    <div className="fix">
+      <Shelf
+        className={styles.root}
+        gap={noGap ? "0" : "var(--gap-5)"}
+        direction="column"
+      >
+        <Shelf pb={4} className={styles.title}>
+          <HelveticaNeueBold> {title}</HelveticaNeueBold>
+          <HelveticaNeue className="ml-auto"> {subtitle}</HelveticaNeue>
+        </Shelf>
+        {children}
       </Shelf>
-      {children}
-    </Shelf>
+    </div>
   );
 };
 
