@@ -1,0 +1,11 @@
+.fit {
+  width: fit-content;
+}
+
+.minWidthFix {
+  min-width: 0;
+}
+
+.minHeightFix {
+  min-height: 0;
+}
