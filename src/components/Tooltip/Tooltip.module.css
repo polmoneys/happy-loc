@@ -1,0 +1,57 @@
+.root {
+  display: inline-flex;
+  width: fit-content;
+  position: relative;
+}
+
+.content {
+  --tooltip-offset-start: 50%;
+  --tooltip-offset-x: -50%;
+  --tooltip-offset-y: 52px;
+  position: absolute;
+  left: var(--tooltip-offset-start);
+  transform: translate(var(--tooltip-offset-x), var(--tooltip-offset-y));
+  z-index: var(--z-3);
+}
+
+.root:focus-within .content {
+  outline: 2px solid var(--teal-5);
+  outline-offset: 2px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+}
+
+button.close {
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+button.input {
+  background-color: var(--gray-3);
+  border: var(--border-width) solid currentColor;
+  box-shadow: var(--shadow);
+  padding: 0 var(--gap-4);
+  min-height: var(--usable-height);
+  justify-content: space-between;
+  display: flex;
+}
+
+.button.input > svg {
+  margin-left: var(--gap-2);
+}
+
+button.inline {
+  border: none;
+  padding: 0 var(--gap-1) 0 0;
+  background-color: transparent;
+}
+
+button.inline:focus,
+button.close:focus {
+  outline: none;
+}

@@ -28,6 +28,7 @@
     "package.json": "npx sort-package-json"
   },
   "dependencies": {
+    "@headlessui/react": "^1.5.0",
     "@reach/checkbox": "^0.16.0",
     "@reach/listbox": "^0.16.2",
     "@react-aria/focus": "^3.5.0",
