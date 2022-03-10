@@ -34,7 +34,7 @@ Primitives like **Font**, **Button**, **Input**, **Checkbox** that you can compo
 
 Layout oriented components **Shelf**, **Stack**, **Grid** or **HorizontalScroll**. 
 
-Rich user interactions like **Listbox** or **Folder**.
+Rich user interactions like **Listbox** **Tooltip** or **Folder**.
 
 **For** or **Card** to tame content. **Shape** for delight. 
 
