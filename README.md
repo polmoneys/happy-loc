@@ -40,7 +40,8 @@ Rich user interactions like **Listbox**, **Tooltip** or **Folder**.
 
 ### Hooks overview 
 
-Primitives like **useMq** or **useStyles**.
+
+Primitives like **useMq**, **useStyles** or **useSx** for managing utility css classes.
 
 Abstractions to deal with items and how them relate as **useSelectedState** or **useMixedState**.
 
