@@ -37,6 +37,7 @@ import Stack from "@/components/Stack/Stack";
 import Tooltip from "@/components/Tooltip/Tooltip";
 import useMixedState from "@/hooks/UseMixedState/UseMixedState";
 import useSelectedState from "@/hooks/UseSelectedState/UseSelectedState";
+import useSx from "@/hooks/UseSx/UseSx";
 import {
   DEMO_BUTTON_GROUP,
   DEMO_BUTTON_SPLIT,
@@ -91,6 +92,10 @@ export default function App() {
   const handleChange = (index: string) => {
     updateSelection(index);
   };
+
+  const { output: fontSX } = useSx({ py: 3, f: 5 });
+  const { output: iconSx } = useSx({ push: "left" });
+  const { output: paperSx } = useSx({ paper: 4, p: 4 });
 
   return (
     <main className="app">
@@ -458,13 +463,23 @@ export default function App() {
           </Frame>
           <Frame title="Col to Row" subtitle="Shelf">
             <Shelf direction="colToRow" gap="1em">
-              <FiStar />
-              <FiStar />
-              <FiStar />
-              <FiBookmark />
-              <FiBookmark />
-              <FiBookmark />
+              <FiStar size={44} />
+              <FiStar size={44} />
+              <FiStar size={44} />
+              <FiBookmark size={44} />
+              <FiBookmark size={44} />
+              <FiBookmark size={44} />
             </Shelf>
+          </Frame>
+          <Frame title="useSx" subtitle="Hook">
+            <Shelf balanced>
+              <p className={fontSX}>Styled paragraph </p>
+              <FiStar className={iconSx} />
+            </Shelf>
+
+            <div className={paperSx}>
+              <FiBookmark size={44} />
+            </div>
           </Frame>
         </Grid>
         <br />

@@ -523,6 +523,10 @@ html {
   background-color: var(--teal-5);
   border-color: transparent;
 }
+.paper.\!\!\!\! {
+  background-color: var(--red-5);
+  border-color: transparent;
+}
 
 /*
   code below needs love aka. some thinking
