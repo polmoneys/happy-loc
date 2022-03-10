@@ -12,6 +12,7 @@ import {
   FiShare,
   FiSmile,
   FiStar,
+  FiX,
 } from "react-icons/fi";
 
 import Avatar1 from "@/assets/dp.png";
@@ -33,6 +34,7 @@ import Listbox from "@/components/Listbox/Listbox";
 import Shape from "@/components/Shape/Shape";
 import Shelf from "@/components/Shelf/Shelf";
 import Stack from "@/components/Stack/Stack";
+import Tooltip from "@/components/Tooltip/Tooltip";
 import useMixedState from "@/hooks/UseMixedState/UseMixedState";
 import useSelectedState from "@/hooks/UseSelectedState/UseSelectedState";
 import {
@@ -66,7 +68,7 @@ export default function App() {
     pager: {},
   });
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(3);
+  const [itemsPerPage, setItemsPerPage] = useState(2);
 
   useEffect(() => {
     if (paginationActive) {
@@ -244,7 +246,7 @@ export default function App() {
                 );
               }}
             </For>
-            <HelveticaNeue className="py $$$$">
+            <HelveticaNeue>
               Page{" "}
               <HelveticaNeueBold as="span">
                 {currentPage} of {paginatedClient.pager.totalPages}
@@ -301,7 +303,7 @@ export default function App() {
               </Shelf>
             </HorizontalScroll>
 
-            <HorizontalScroll progress={false}>
+            {/* <HorizontalScroll progress={false}>
               <Shelf gap="2em" className="py $$$$$">
                 <Stat className="paper">
                   <HelveticaNeue>Fuck Putin</HelveticaNeue>
@@ -328,7 +330,7 @@ export default function App() {
                   <FiStar />
                 </Stat>
               </Shelf>
-            </HorizontalScroll>
+            </HorizontalScroll> */}
 
             <HorizontalScroll progress={false}>
               <Shelf gap="1em" className="py $$$$$">
@@ -382,6 +384,77 @@ export default function App() {
                 </Shelf>
               </Shelf>
             </HorizontalScroll>
+          </Frame>
+
+          <Frame title="Tooltip" subtitle=":focus-visible & :focus-within">
+            <Shelf>
+              <Tooltip
+                label="Destroy"
+                offset={{
+                  start: "0",
+                  x: "0",
+                  y: "52px",
+                }}
+                closeLabel={<FiX />}
+              >
+                <div className={styles.tooltipAlpha}>
+                  <Shelf direction="column" className="pt $$$$$">
+                    <HelveticaNeue size={2}>Warning</HelveticaNeue>
+                    <HelveticaNeue className="pt $$$$$">
+                      This action is destructive bla bla bla and can not be
+                      undone...so, are you really really sure ?
+                    </HelveticaNeue>
+                    <Shelf className="mt-auto">
+                      <Button className="ml-auto">Burn it</Button>
+                    </Shelf>
+                  </Shelf>
+                </div>
+              </Tooltip>
+            </Shelf>
+
+            <HelveticaNeue className="py $$$$$">
+              Lorem Ipsum is simply{" "}
+              <Tooltip
+                label={<HelveticaNeueBold>Somiatruites</HelveticaNeueBold>}
+                variant="inline"
+              >
+                <div className={styles.tooltipDelta}>
+                  <Shelf className={styles.grow}>
+                    <HelveticaNeueBold className="f @@ mr-auto">
+                      Somiatruites
+                    </HelveticaNeueBold>
+                    <FiBookmark />
+                  </Shelf>
+
+                  <HelveticaNeue as="span" className="mt-auto">
+                    Day dreamer.
+                  </HelveticaNeue>
+                </div>
+              </Tooltip>
+              text of the printing and typesetting centuries, but also the leap
+              into electronic typesetting, remaining essentially unchanged. It
+              was popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages.
+            </HelveticaNeue>
+
+            <Shelf>
+              <Tooltip
+                label="Destroy"
+                className="ml-auto"
+                offset={{
+                  start: "0",
+                  x: "calc(-100% + 112px)",
+                  y: "52px",
+                }}
+              >
+                <div className={styles.tooltipBeta}>
+                  <Shelf direction="column" className={styles.grow}>
+                    <HelveticaNeue>Are you sure ?</HelveticaNeue>
+                    <Button className="mt-auto">Yes</Button>
+                  </Shelf>
+                </div>
+              </Tooltip>
+            </Shelf>
           </Frame>
           <Frame title="Col to Row" subtitle="Shelf">
             <Shelf direction="colToRow" gap="1em">

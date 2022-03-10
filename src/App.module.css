@@ -10,6 +10,31 @@
   border: var(--border-width) solid currentColor;
 }
 
+.grow {
+  height: 100%;
+}
+
 .unsetBorderRadius > * {
   border-radius: 0 !important;
+}
+.tooltipAlpha,
+.tooltipBeta,
+.tooltipDelta {
+  padding: var(--gap-3);
+  background-color: var(--gray-5);
+  position: relative;
+}
+.tooltipAlpha {
+  width: 240px;
+  aspect-ratio: 3/2;
+}
+
+.tooltipBeta {
+  width: 240px;
+  aspect-ratio: 1;
+}
+
+.tooltipDelta {
+  width: 200px;
+  aspect-ratio: 1;
 }

@@ -195,8 +195,7 @@ p > span {
 }
 h1,
 h2,
-h3,
-p {
+h3 {
   word-wrap: break-word;
   line-height: var(--set-solid);
 }
