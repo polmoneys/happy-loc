@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 
 import { HelveticaNeue, HelveticaNeueBold } from "@/components/Font/Font";
 import Shelf from "@/components/Shelf/Shelf";
+import useSx from "@/hooks/UseSx/UseSx";
 
 import styles from "./frame.module.css";
 
@@ -14,8 +15,11 @@ interface Props {
 
 const Frame = (props: Props) => {
   const { children, title, subtitle, noGap = false } = props;
+
+  const { output } = useSx({ minFix: "width" });
+
   return (
-    <div className="fix">
+    <div className={output}>
       <Shelf
         className={styles.root}
         gap={noGap ? "0" : "var(--gap-5)"}
