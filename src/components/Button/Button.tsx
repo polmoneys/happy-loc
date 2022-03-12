@@ -17,7 +17,10 @@ import { DefaultProps, EventCbProps, SlotsProps } from "../types";
 import styles from "./Button.module.css";
 
 export interface Props
-  extends Pick<DefaultProps, "children" | "className" | "compose">,
+  extends Pick<
+      DefaultProps,
+      "children" | "className" | "compose" | "discouragedStyle"
+    >,
     SlotsProps,
     EventCbProps {
   /** Icon with just buttons  */
@@ -56,6 +59,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(
       label,
       align = "center",
       color,
+      discouragedStyle,
     } = props;
 
     const { pressProps, isPressed } = usePress({
@@ -106,6 +110,9 @@ const Button = forwardRef<HTMLButtonElement, Props>(
           {...eventHandlers}
           {...(label && { "aria-label": label })}
           data-testid="button"
+          {...(!isNil(discouragedStyle) && {
+            style: discouragedStyle,
+          })}
         >
           {!isNil(start) && start} {children} {!isNil(end) && end}
         </button>
