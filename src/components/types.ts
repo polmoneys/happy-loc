@@ -86,16 +86,11 @@ export type ChildrenProp<T = Record<string, unknown>> = T & {
     | null;
 };
 
-/**
- * For data-driven components.
- */
-
-export interface ActionItem
-  extends Pick<DefaultProps, "id" | "children">,
-    EventCbProps {
+export interface Action extends Pick<DefaultProps, "id">, EventCbProps {
   disabled?: boolean;
   label: string | HTMLSpanElement;
+  value?: string | ReactNode;
   to?: string;
 }
 
-export type ActionItems = Array<ActionItem>;
+export type Actions = Array<Action>;

@@ -1,0 +1,29 @@
+.root {
+  display: inline-flex;
+  min-height: auto;
+  width: fit-content;
+  height: fit-content;
+  text-transform: uppercase;
+  font-size: 75%;
+  font-weight: bolder;
+  letter-spacing: 0.1em;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.root.ring,
+.root:focus-visible {
+  /* until :focus-visible has better browser support */
+  outline: var(--border-width) solid currentColor;
+  outline-offset: var(--border-width);
+  outline-color: var(--gray-8);
+}
+
+.root:focus {
+  background-color: var(--gray-8);
+  color: var(--white);
+}
+
+.root.pill {
+  border-radius: 22px;
+}
