@@ -5,17 +5,17 @@
  * Feedback at polmoneys on github
  *
  */
-
 import { Popover } from "@headlessui/react";
 import { useFocusRing } from "@react-aria/focus";
 import { useHover } from "@react-aria/interactions";
+import isNil from "lodash.isnil";
 import { Fragment, ReactNode, useEffect, useRef } from "react";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 import Button from "@/components/Button/Button";
 import { HelveticaNeue } from "@/components/Font/Font";
+import useStyles from "@/hooks/UseStyles/UseStyles";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
 import { CSSProps, DefaultProps } from "../types";
 import styles from "./Tooltip.module.css";
 
@@ -64,23 +64,25 @@ const Tooltip = (props: Props) => {
 
   if (offset !== undefined) {
     propsToStyles = {
-      ...(offset.start !== undefined && {
+      ...(!isNil(offset.start) && {
         "--tooltip-offset-start": offset.start,
       }),
-      ...(offset.x !== undefined && { "--tooltip-offset-x": offset.x }),
-      ...(offset.y !== undefined && { "--tooltip-offset-y": offset.y }),
+      ...(!isNil(offset.x) && { "--tooltip-offset-x": offset.x }),
+      ...(!isNil(offset.y) && { "--tooltip-offset-y": offset.y }),
     };
   }
 
+  const isInput = variant === "input";
+
   const { output: triggerClassNames } = useStyles(
     styles.button,
-    variant === "input" ? styles.input : styles.inline
+    isInput ? styles.input : styles.inline
   );
 
   const { output: rootClassNames } = useStyles(className, styles.root);
   const idleChevronColor = isFocusVisible
     ? "var(--teal-5)"
-    : variant === "input"
+    : isInput
     ? "currentColor"
     : "var(--gray-4)";
   return (
