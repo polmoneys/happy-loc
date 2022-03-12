@@ -150,3 +150,40 @@ export const DEMO_FOLDER = {
     },
   ],
 };
+
+export const DEMO_CHIPS = [
+  {
+    id: "1",
+    label: "0%",
+    value: "a",
+    disabled: false,
+    onClick: () => console.log("click"),
+  },
+  {
+    id: "2",
+    label: "25%",
+    value: "b",
+    disabled: true,
+    onClick: () => console.log("click"),
+  },
+  {
+    id: "3",
+    label: "50%",
+    value: "c",
+    disabled: false,
+    onClick: () => console.log("click"),
+  },
+  {
+    id: "4",
+    label: "75%",
+    value: "d",
+    disabled: false,
+    onClick: () => console.log("click"),
+  },
+  {
+    id: "5",
+    label: "100%",
+    value: "e",
+    disabled: false,
+  },
+];

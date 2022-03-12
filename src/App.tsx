@@ -23,6 +23,7 @@ import ButtonSplit from "@/components/Button/variants/ButtonSplit";
 import Card from "@/components/Card/Card";
 import CardMedia from "@/components/Card/CardMedia";
 import Checkbox from "@/components/Checkbox/Checkbox";
+import Chip from "@/components/Chip/Chip";
 import Folder from "@/components/Folder/Folder";
 import { HelveticaNeue, HelveticaNeueBold } from "@/components/Font/Font";
 import For, { ObjectLike } from "@/components/For/For";
@@ -42,6 +43,7 @@ import {
   DEMO_BUTTON_GROUP,
   DEMO_BUTTON_SPLIT,
   DEMO_CHECKBOXES,
+  DEMO_CHIPS,
   DEMO_FOLDER,
   DEMO_FOR,
   DEMO_LISTBOX,
@@ -49,7 +51,7 @@ import {
   VALIDATE_USERNAME,
 } from "@/stories/datum";
 import Frame from "@/stories/frame";
-import Stat from "@/stories/stat";
+// import Stat from "@/stories/stat";
 import Title from "@/stories/title";
 
 import styles from "./App.module.css";
@@ -480,6 +482,18 @@ export default function App() {
             <div className={paperSx}>
               <FiBookmark size={44} />
             </div>
+          </Frame>
+          <Frame title="Chip">
+            <Shelf wrap gap="var(--gap-3)">
+              {DEMO_CHIPS?.map(chip => (
+                <Chip key={chip.id} {...chip} />
+              ))}
+              <Chip
+                variant="pill"
+                label="Some choice"
+                onClick={() => console.log("pill")}
+              />
+            </Shelf>
           </Frame>
         </Grid>
         <br />
