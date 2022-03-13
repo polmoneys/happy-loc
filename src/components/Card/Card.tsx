@@ -10,7 +10,8 @@ import { useFocusWithin, useHover, usePress } from "@react-aria/interactions";
 import isNil from "lodash.isnil";
 import { ElementType, forwardRef, useState } from "react";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import { CSSProps, DefaultProps, EventCbProps } from "../types";
 import styles from "./Card.module.css";
 
@@ -64,12 +65,12 @@ const Card = forwardRef((props: Props, ref) => {
   } = props;
 
   const { pressProps, isPressed } = usePress({
-    onPress: event => (onClick ? onClick() : {}),
+    onPress: event => (!isNil(onClick) ? onClick?.() : {}),
   });
 
   const { hoverProps, isHovered } = useHover({
-    onHoverStart: event => (onStartHover ? onStartHover() : {}),
-    onHoverEnd: event => (onEndHover ? onEndHover() : {}),
+    onHoverStart: event => (!isNil(onStartHover) ? onStartHover?.() : {}),
+    onHoverEnd: event => (!isNil(onEndHover) ? onEndHover?.() : {}),
   });
 
   const [isFocusWithin, setFocusWithin] = useState(false);

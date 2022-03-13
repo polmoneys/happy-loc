@@ -1,7 +1,21 @@
+/**
+ *
+ * WIP
+  let skipRendering = false;
+  const connection = window?.navigator && window?.connection;
+  if (connection) {
+    if (["slow-2g", "2g", "3g"].includes(connection?.effectiveType)) {
+      skipRendering = true;
+    }
+  }
+ *
+ */
+
 import isNil from "lodash.isnil";
 import { Fragment, useState } from "react";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import { DefaultProps } from "../types";
 import styles from "./Card.module.css";
 
@@ -34,14 +48,6 @@ const CardMedia = (props: CardMediaProps) => {
       );
     });
   }
-
-  // let skipRendering = false;
-  // const connection = window?.navigator && window?.connection;
-  // if (connection) {
-  //   if (["slow-2g", "2g", "3g"].includes(connection?.effectiveType)) {
-  //     skipRendering = true;
-  //   }
-  // }
 
   return (
     <picture

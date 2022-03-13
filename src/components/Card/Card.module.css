@@ -48,6 +48,8 @@
 /* Card state if event handlers are in use */
 
 .focusWithin {
+  outline: 2px solid var(--teal-5);
+  outline-offset: 2px;
 }
 
 .pressed {
@@ -55,6 +57,8 @@
 
 .hovered {
 }
+
+/* Props gradient orientation */
 
 .bottom::after,
 .top::after {
