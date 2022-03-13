@@ -8,11 +8,13 @@
  */
 import { ElementType } from "react";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import { DefaultProps } from "../types";
 import styles from "./Stack.module.css";
 
 interface Props extends Pick<DefaultProps, "as" | "children"> {
+  /** Adjust content placement */
   align?: "start" | "end" | "center";
 }
 

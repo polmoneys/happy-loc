@@ -4,7 +4,8 @@ import { CustomCheckbox } from "@reach/checkbox";
 import { ChangeEvent, ReactElement, ReactNode } from "react";
 import { FiCheck, FiMinus } from "react-icons/fi";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import styles from "./Checkbox.module.css";
 
 interface FormElementProps {
@@ -17,7 +18,8 @@ interface FormElementProps {
 interface Props extends Partial<FormElementProps> {
   checked?: boolean | "mixed";
   value: string | number;
-  id?: string | number;
+  name: string;
+  required?: boolean;
   /** Can be null */
   children?:
     | ((...args: any[]) => ReactElement | null)
@@ -26,12 +28,11 @@ interface Props extends Partial<FormElementProps> {
     | ReactNode
     | string
     | null;
+  id?: string | number;
   /** Accepts module style.xxxx */
   className?: string;
-  required?: boolean;
   onError?: () => void;
   onSuccess?: () => void;
-  name: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 

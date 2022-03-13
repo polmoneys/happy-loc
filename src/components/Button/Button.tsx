@@ -12,7 +12,8 @@ import { useHover, usePress } from "@react-aria/interactions";
 import isNil from "lodash.isnil";
 import { ForwardedRef, forwardRef, useMemo } from "react";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import { DefaultProps, EventCbProps, SlotsProps } from "../types";
 import styles from "./Button.module.css";
 
@@ -23,17 +24,18 @@ export interface Props
     >,
     SlotsProps,
     EventCbProps {
-  /** Icon with just buttons  */
+  /** IconButton  */
   label?: string;
-  /** Button width 100% */
+  /** Width 100% */
   stretch?: boolean;
-  /** Button active ? */
-  disabled?: boolean;
+  /** defaults to center */
   align?: "start" | "center" | "evenly" | "end";
+  disabled?: boolean;
   /** Buttons inside Form should be type="submit" */
   type?: "button" | "submit" | "reset";
-  preventFocusOnPress?: boolean;
+  /** A11y */
   ring?: boolean;
+  preventFocusOnPress?: boolean;
   /** ButtonGroupButton event  */
   onKeyDown?: (event: KeyboardEvent) => void;
   /** Base style variants  */
@@ -63,20 +65,20 @@ const Button = forwardRef<HTMLButtonElement, Props>(
     } = props;
 
     const { pressProps, isPressed } = usePress({
-      onPress: () => (onClick ? onClick() : {}),
+      onPress: () => (!isNil(onClick) ? onClick?.() : {}),
       preventFocusOnPress,
     });
 
     const { hoverProps, isHovered } = useHover({
-      onHoverStart: () => (onStartHover ? onStartHover() : {}),
-      onHoverEnd: () => (onEndHover ? onEndHover() : {}),
+      onHoverStart: () => (!isNil(onStartHover) ? onStartHover?.() : {}),
+      onHoverEnd: () => (!isNil(onEndHover) ? onEndHover?.() : {}),
     });
 
     const eventHandlers = disabled
       ? {}
       : {
-          ...(onClick && { ...pressProps }),
-          ...(onStartHover && { ...hoverProps }),
+          ...(!isNil(onClick) && { ...pressProps }),
+          ...(!isNil(onStartHover) && { ...hoverProps }),
         };
 
     const alignClass = useMemo(() => {

@@ -8,7 +8,8 @@
 
 import { memo } from "react";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import { DefaultProps } from "../types";
 import { polygon } from "./polygon";
 import styles from "./Shape.module.css";
@@ -16,9 +17,7 @@ import styles from "./Shape.module.css";
 export interface Props extends Pick<DefaultProps, "className"> {
   /** Number of sides */
   sides?: number;
-  /** Size */
   size?: number;
-  /** Color */
   fill?: string;
   /** Rotate, Translate, Scale */
   transforms?: string;

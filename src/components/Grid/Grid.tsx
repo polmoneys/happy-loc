@@ -8,7 +8,8 @@
 
 import { ElementType, useMemo } from "react";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import { CSSProps, DefaultProps } from "../types";
 import styles from "./Grid.module.css";
 
@@ -19,7 +20,7 @@ interface Props extends DefaultProps {
   size?: string;
   /** Stretch children to equalize their height*/
   stretch?: boolean;
-  /** Dense grid */
+  /** grid-auto-flow: dense */
   masonry?: boolean;
 }
 

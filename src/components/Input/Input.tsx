@@ -10,8 +10,8 @@ import { FiCheckCircle, FiXCircle } from "react-icons/fi";
 
 import { HelveticaNeue } from "@/components/Font/Font";
 import Shelf from "@/components/Shelf/Shelf";
+import useStyles from "@/hooks/UseStyles/UseStyles";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
 import { DefaultProps, SlotsProps } from "../types";
 import styles from "./Input.module.css";
 
@@ -23,12 +23,13 @@ type BaseProps = DetailedHTMLProps<
 interface Props
   extends Pick<SlotsProps, "start">,
     Pick<DefaultProps, "className" | "id"> {
-  value?: string | number;
   name: string;
   label: string;
+  value?: string | number;
   type?: string;
-  required?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   validation?: any;
+  required?: boolean;
   autofocus?: boolean;
   autocomplete?:
     | "off"

@@ -9,7 +9,8 @@
 import isNil from "lodash.isnil";
 import { ElementType } from "react";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import { CSSProps, DefaultProps } from "../types";
 import styles from "./Shelf.module.css";
 

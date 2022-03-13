@@ -17,18 +17,21 @@ import {
   useMemo,
 } from "react";
 
-import useStyles from "../../hooks/UseStyles/UseStyles";
+import useStyles from "@/hooks/UseStyles/UseStyles";
+
 import styles from "./For.module.css";
 
 export type ObjectLike = Record<string, unknown>;
 
 interface Props {
-  as?: "section" | "article" | "ul" | "ol" | "div";
-  children: (item: ObjectLike) => void;
-  className?: string;
+  /** Content */
   of: Array<ObjectLike>;
-  empty?: ReactNode | ReactElement;
+  children: (item: ObjectLike) => void;
+  /** Dynamic Content */
   loading?: boolean;
+  empty?: ReactNode | ReactElement;
+  as?: "section" | "article" | "ul" | "ol" | "div";
+  className?: string;
 }
 
 const For = (props: Props) => {
