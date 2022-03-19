@@ -36,6 +36,7 @@
     "@react-aria/visually-hidden": "^3.2.5",
     "lodash.isnil": "^4.0.0",
     "lodash.isstring": "^4.0.1",
+    "match-sorter": "^6.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",

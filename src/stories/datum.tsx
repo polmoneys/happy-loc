@@ -37,7 +37,15 @@ export const DEMO_CHECKBOXES = {
   ketchup: false,
 };
 
-export const DEMO_FOR: Array<ObjectLike> = [
+export interface Shape {
+  id: number;
+  name: string;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Shapes extends Array<Shape> {}
+
+export const DEMO_FOR: Shapes = [
   {
     id: 3,
     name: "Triangle",
@@ -185,5 +193,12 @@ export const DEMO_CHIPS = [
     label: "100%",
     value: "e",
     disabled: false,
+  },
+];
+
+export const NO_RESULTS = [
+  {
+    id: "69",
+    name: "No results",
   },
 ];

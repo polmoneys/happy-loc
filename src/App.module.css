@@ -10,6 +10,11 @@
   border: var(--border-width) solid currentColor;
 }
 
+.listLite {
+  border: var(--border-width) solid currentColor;
+  width: fit-content !important;
+}
+
 .grow {
   height: 100%;
 }

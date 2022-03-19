@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { matchSorter } from "match-sorter";
+import { ChangeEvent, useEffect, useState } from "react";
 import {
   FiAlignLeft,
   FiAlignRight,
@@ -36,6 +37,7 @@ import Shape from "@/components/Shape/Shape";
 import Shelf from "@/components/Shelf/Shelf";
 import Stack from "@/components/Stack/Stack";
 import Tooltip from "@/components/Tooltip/Tooltip";
+import useCache from "@/hooks/UseCache/UseCache";
 import useMixedState from "@/hooks/UseMixedState/UseMixedState";
 import useSelectedState from "@/hooks/UseSelectedState/UseSelectedState";
 import useSx from "@/hooks/UseSx/UseSx";
@@ -47,6 +49,9 @@ import {
   DEMO_FOLDER,
   DEMO_FOR,
   DEMO_LISTBOX,
+  NO_RESULTS,
+  Shape as ShapeInterface,
+  Shapes,
   VALIDATE_URL,
   VALIDATE_USERNAME,
 } from "@/stories/datum";
@@ -98,7 +103,49 @@ export default function App() {
   const { output: fontSX } = useSx({ py: 3, f: 5 });
   const { output: iconSx } = useSx({ push: "left" });
   const { output: paperSx } = useSx({ paper: 4, p: 4 });
+  const { output: listSideItem } = useSx({ push: "left", f: 1 });
 
+  // Client side search
+  const cacheInstance = useCache();
+
+  const [list, setList] = useState<Shapes>(DEMO_FOR);
+  const [query, setQuery] = useState("");
+  const [searching, setStatusSearch] = useState(false);
+
+  function onSearch(term: string, list: Array<any>) {
+    return term.trim() === ""
+      ? NO_RESULTS
+      : matchSorter(list, term, {
+          keys: [mtch => `${mtch.name},${mtch.id}`],
+        });
+  }
+
+  const handleChangeInputSearch = (event: ChangeEvent<any>) => {
+    const newQuery = event?.target?.value as string;
+    if (!searching) {
+      setStatusSearch(true);
+    }
+    if (newQuery.trim().length > 1) {
+      const isInCache = cacheInstance.has(newQuery);
+
+      if (!isInCache) {
+        const matches = onSearch(query, DEMO_FOR);
+        cacheInstance.set(newQuery, matches);
+        setList(matches);
+      } else {
+        const fromCache = cacheInstance.get(newQuery) as Shapes;
+        setList(fromCache);
+      }
+    }
+    setQuery(newQuery);
+  };
+
+  useEffect(() => {
+    if (query.trim() === "") {
+      setList(DEMO_FOR);
+      setStatusSearch(false);
+    }
+  }, [query]);
   return (
     <main className="app">
       <header className="full">
@@ -227,6 +274,50 @@ export default function App() {
                   validation={VALIDATE_URL}
                   onChange={d => console.log(d)}
                 />
+              </Shelf>
+            </form>
+          </Frame>
+
+          <Frame title="useCache" subtitle="Hook">
+            <form onSubmit={() => console.log("SUBMITING")}>
+              <Shelf direction="column" gap="var(--gap-3)">
+                <Shelf balanced gap="var(--gap-3)">
+                  <Input
+                    label=""
+                    placeholder="Type shape"
+                    id="shape"
+                    name="shape"
+                    value={query}
+                    onFocus={() => setStatusSearch(true)}
+                    onBlur={() => setStatusSearch(false)}
+                    onChange={ev => handleChangeInputSearch(ev)}
+                  />
+
+                  {searching && (
+                    <FiSmile
+                      size="28px"
+                      color="var(--teal-3)"
+                      style={{
+                        transform: "translateY(10px)",
+                      }}
+                    />
+                  )}
+                </Shelf>
+                <Shelf wrap gap="var(--gap-3)">
+                  {list.map(it => (
+                    <Shelf
+                      key={it.id}
+                      balanced
+                      className={styles.listLite}
+                      p={4}
+                    >
+                      <HelveticaNeue>
+                        <HelveticaNeueBold as="b">{it.id}:</HelveticaNeueBold>{" "}
+                        {it.name.toLocaleUpperCase()}
+                      </HelveticaNeue>
+                    </Shelf>
+                  ))}
+                </Shelf>
               </Shelf>
             </form>
           </Frame>
