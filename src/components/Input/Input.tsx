@@ -3,6 +3,7 @@ import {
   ChangeEvent,
   DetailedHTMLProps,
   forwardRef,
+  Fragment,
   InputHTMLAttributes,
   useState,
 } from "react";
@@ -80,7 +81,7 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
       onPaste = () => ({}),
     } = props;
 
-    const [valid, setStatus] = useState(false);
+    const [valid, setStatus] = useState(!isNil(validation) ? false : true);
     const { output } = useStyles(
       styles.root,
       !valid && styles.invalid,
@@ -91,7 +92,7 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
       if (!isNil(validation)) {
-        validation.isValid(value).then((valid: boolean) => {
+        return validation.isValid(value).then((valid: boolean) => {
           if (valid) {
             setStatus(true);
             if (onChange) {
@@ -102,6 +103,7 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
           }
         });
       }
+      onChange?.(event);
     };
 
     return (
@@ -128,21 +130,25 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
             onPaste={onPaste}
             {...(placeholder && { placeholder })}
           />
-          <HelveticaNeue id={`${id}-error`} aria-live="polite">
-            {valid ? (
-              <FiCheckCircle
-                size="28px"
-                color="var(--teal-3)"
-                aria-label="valid input"
-              />
-            ) : (
-              <FiXCircle
-                size="28px"
-                color="var(--red-3)"
-                aria-label="invalid input"
-              />
-            )}
-          </HelveticaNeue>
+          {!isNil(validation) ? (
+            <HelveticaNeue id={`${id}-error`} aria-live="polite">
+              {valid ? (
+                <FiCheckCircle
+                  size="28px"
+                  color="var(--teal-3)"
+                  aria-label="valid input"
+                />
+              ) : (
+                <FiXCircle
+                  size="28px"
+                  color="var(--red-3)"
+                  aria-label="invalid input"
+                />
+              )}
+            </HelveticaNeue>
+          ) : (
+            <Fragment />
+          )}
         </Shelf>
       </Shelf>
     );
