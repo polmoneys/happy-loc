@@ -39,7 +39,16 @@
   border-bottom: calc(var(--border-width) * 2) solid var(--red-3);
 }
 
-.root:not(.invalid) input,
 .root:not(.invalid).required input {
   border-bottom: calc(var(--border-width) * 2) solid var(--teal-3);
+}
+
+.hiddenLabel:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
