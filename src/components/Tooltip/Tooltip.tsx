@@ -24,7 +24,7 @@ const { Group } = Popover;
 interface Props extends Pick<DefaultProps, "className" | "children"> {
   label: string | ReactNode;
   closeLabel?: string | ReactNode;
-  variant?: "inline" | "input";
+  variant?: "inline" | "input" | "ghost";
   onHoverIn?: () => void;
   onHoverOut?: () => void;
   offset?: {
@@ -73,10 +73,14 @@ const Tooltip = (props: Props) => {
   }
 
   const isInput = variant === "input";
+  const isInline = variant === "inline";
+  const isGhost = variant === "ghost";
 
   const { output: triggerClassNames } = useStyles(
     styles.button,
-    isInput ? styles.input : styles.inline
+    isInput && styles.input,
+    isGhost && styles.ghost,
+    isInline && styles.inline
   );
 
   const { output: rootClassNames } = useStyles(className, styles.root);
@@ -96,10 +100,14 @@ const Tooltip = (props: Props) => {
             className={triggerClassNames}
           >
             <HelveticaNeue as="span">{label}</HelveticaNeue>
-            {open ? (
-              <FiChevronUp />
-            ) : (
-              <FiChevronDown color={idleChevronColor} />
+            {!isGhost && (
+              <Fragment>
+                {open ? (
+                  <FiChevronUp />
+                ) : (
+                  <FiChevronDown color={idleChevronColor} />
+                )}
+              </Fragment>
             )}
           </Popover.Button>
           {/* <Popover.Overlay className="overlay" /> */}

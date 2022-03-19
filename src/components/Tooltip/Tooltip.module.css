@@ -45,13 +45,19 @@ button.input {
   margin-left: var(--gap-2);
 }
 
-button.inline {
+button.inline,
+button.ghost {
   border: none;
   padding: 0 var(--gap-1) 0 0;
   background-color: transparent;
 }
 
+button.ghost:focus,
 button.inline:focus,
 button.close:focus {
   outline: none;
+}
+
+button.ghost {
+  padding: 0;
 }
