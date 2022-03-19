@@ -7,6 +7,8 @@ import {
 } from "./DraggableUtils";
 import { Props } from "./HorizontalScroll";
 
+const ROOT_ACTIVE_CLASSNAME = "horizontal-scroll-root-active";
+
 export class CreateSlider {
   options: any;
   containerTag: any;
@@ -128,19 +130,19 @@ export class CreateSlider {
     this.startX = event.pageX - this.sliderTag.offsetLeft;
     this.scrollLeft = this.scrollAmount;
 
-    this.sliderTag.classList.add("horizontal-scroll-root-active");
+    this.sliderTag.classList.add(ROOT_ACTIVE_CLASSNAME);
     this.callCallback("mousedown", null);
   };
 
   mouseleave = (): void => {
     this.down = false;
-    this.sliderTag.classList.remove("horizontal-scroll-root-active");
+    this.sliderTag.classList.remove(ROOT_ACTIVE_CLASSNAME);
     this.callCallback("mouseleave", null);
   };
 
   mouseup = (): void => {
     this.down = false;
-    this.sliderTag.classList.remove("horizontal-scroll-root-active");
+    this.sliderTag.classList.remove(ROOT_ACTIVE_CLASSNAME);
     this.callCallback("mouseup", null);
   };
 
@@ -209,13 +211,13 @@ export class CreateSlider {
     if (this.dist >= this.scrollWidth) return;
 
     // Set slider active class
-    this.sliderTag.classList.add("horizontal-scroll-root-active");
+    this.sliderTag.classList.add(ROOT_ACTIVE_CLASSNAME);
 
     // Animate and transform
     this.anime();
 
     // Remove slider active class
-    this.sliderTag.classList.remove("horizontal-scroll-root-active");
+    this.sliderTag.classList.remove(ROOT_ACTIVE_CLASSNAME);
   };
 
   init = (): void => {
