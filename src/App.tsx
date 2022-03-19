@@ -1,5 +1,11 @@
 import { matchSorter } from "match-sorter";
-import { ChangeEvent, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  Fragment,
+  KeyboardEvent,
+  useEffect,
+  useState,
+} from "react";
 import {
   FiAlignLeft,
   FiAlignRight,
@@ -60,6 +66,7 @@ import Frame from "@/stories/frame";
 import Title from "@/stories/title";
 
 import styles from "./App.module.css";
+import useStyles from "./hooks/UseStyles/UseStyles";
 
 export default function App() {
   // Checkboxes
@@ -103,22 +110,13 @@ export default function App() {
   const { output: fontSX } = useSx({ py: 3, f: 5 });
   const { output: iconSx } = useSx({ push: "left" });
   const { output: paperSx } = useSx({ paper: 4, p: 4 });
-  const { output: listSideItem } = useSx({ push: "left", f: 1 });
 
-  // Client side search
+  // Client side search with query and results cached
   const cacheInstance = useCache();
-
+  const [multipleSelections, setMultipleSelections] = useState<Shapes>([]);
   const [list, setList] = useState<Shapes>(DEMO_FOR);
   const [query, setQuery] = useState("");
   const [searching, setStatusSearch] = useState(false);
-
-  function onSearch(term: string, list: Array<any>) {
-    return term.trim() === ""
-      ? NO_RESULTS
-      : matchSorter(list, term, {
-          keys: [mtch => `${mtch.name},${mtch.id}`],
-        });
-  }
 
   const handleChangeInputSearch = (event: ChangeEvent<any>) => {
     const newQuery = event?.target?.value as string;
@@ -146,6 +144,86 @@ export default function App() {
       setStatusSearch(false);
     }
   }, [query]);
+
+  function onSearch(term: string, list: Array<any>) {
+    return term.trim() === ""
+      ? NO_RESULTS
+      : matchSorter(list, term, {
+          keys: [mtch => `${mtch.name},${mtch.id}`],
+        });
+  }
+
+  const { output: chipsInput } = useStyles(
+    multipleSelections.length > 0 && styles.chipsRow
+  );
+
+  const limitChips =
+    multipleSelections.length >= 3
+      ? [...multipleSelections.slice(1, 2), { id: "all", name: "+2" }]
+      : multipleSelections;
+  const inputChipsStart =
+    multipleSelections.length > 0 ? (
+      <Shelf wrap gap="var(--gap-1)" px={1} className={chipsInput}>
+        {limitChips?.map(chip => {
+          // ADD TOOLTIP
+          // if (chip.id === "all") {
+          //   return (
+          //     <Tooltip
+          //       label={
+          //         <Button color="text" onClick={() => onDeleteChip(chip)}>
+          //           {chip.name}
+          //         </Button>
+          //       }
+          //       variant="ghost"
+          //     >
+          //       <div className={styles.tooltipGhost}>
+          //         {multipleSelections?.map(chip => (
+          //           <HelveticaNeue key={chip.id}>{chip.name}</HelveticaNeue>
+          //         ))}
+          //       </div>
+          //     </Tooltip>
+          //   );
+          // }
+          return (
+            <Chip
+              key={chip.id}
+              label={chip.name}
+              onClick={() => onDeleteChip(chip)}
+            />
+          );
+        })}
+      </Shelf>
+    ) : (
+      <Fragment />
+    );
+  const onDeleteChip = (chip: ShapeInterface) => {
+    if (chip.id === "all") {
+      return setMultipleSelections([]);
+    }
+    const nextState = multipleSelections.filter(
+      inStateChip => inStateChip.id !== chip.id
+    );
+    setMultipleSelections(nextState);
+  };
+
+  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    switch (event.key) {
+      case "Enter":
+        if (list.length === 1) {
+          const current = list[0];
+          if (multipleSelections.map(chp => chp.id).includes(current.id)) {
+            return setMultipleSelections(prev =>
+              prev.filter(chp => chp.id !== current.id)
+            );
+          }
+          setMultipleSelections(prev => [...prev, current]);
+        }
+        break;
+      default:
+        return;
+    }
+  };
+
   return (
     <main className="app">
       <header className="full">
@@ -279,47 +357,56 @@ export default function App() {
           </Frame>
 
           <Frame title="useCache" subtitle="Hook">
-            <form onSubmit={() => console.log("SUBMITING")}>
-              <Shelf direction="column" gap="var(--gap-3)">
-                <Shelf balanced gap="var(--gap-3)">
-                  <Input
-                    label=""
-                    placeholder="Type shape"
-                    id="shape"
-                    name="shape"
-                    value={query}
-                    onFocus={() => setStatusSearch(true)}
-                    onBlur={() => setStatusSearch(false)}
-                    onChange={ev => handleChangeInputSearch(ev)}
-                  />
-
-                  {searching && (
-                    <FiSmile
-                      size="28px"
-                      color="var(--teal-3)"
-                      style={{
-                        transform: "translateY(10px)",
+            <Shelf direction="column" gap="var(--gap-3)">
+              <Shelf
+                balanced
+                gap="var(--gap-3)"
+                className={styles.inputWithChips}
+              >
+                <Input
+                  labelHidden
+                  start={inputChipsStart}
+                  label="Selected shapes"
+                  placeholder="Type shape"
+                  id="shape"
+                  name="shape"
+                  value={query}
+                  onFocus={() => setStatusSearch(true)}
+                  onBlur={() => setStatusSearch(false)}
+                  onChange={ev => handleChangeInputSearch(ev)}
+                  onKeyDown={onKeyDown}
+                />
+              </Shelf>
+              <Shelf wrap gap="var(--gap-1)">
+                {list.map(listItem => (
+                  <Shelf key={listItem.id} balanced className={styles.listLite}>
+                    <Button
+                      start={<FiStar size="14px" />}
+                      color="text"
+                      onClick={() => {
+                        if (
+                          multipleSelections
+                            .map(chip => chip.id)
+                            .includes(listItem.id)
+                        ) {
+                          return setMultipleSelections(prev =>
+                            prev.filter(chp => chp.id !== listItem.id)
+                          );
+                        }
+                        setMultipleSelections(prev => [...prev, listItem]);
                       }}
-                    />
-                  )}
-                </Shelf>
-                <Shelf wrap gap="var(--gap-3)">
-                  {list.map(it => (
-                    <Shelf
-                      key={it.id}
-                      balanced
-                      className={styles.listLite}
-                      p={4}
                     >
                       <HelveticaNeue>
-                        <HelveticaNeueBold as="b">{it.id}:</HelveticaNeueBold>{" "}
-                        {it.name.toLocaleUpperCase()}
+                        <HelveticaNeueBold as="b">
+                          {listItem.id}:
+                        </HelveticaNeueBold>{" "}
+                        {listItem.name.toLocaleUpperCase()}
                       </HelveticaNeue>
-                    </Shelf>
-                  ))}
-                </Shelf>
+                    </Button>
+                  </Shelf>
+                ))}
               </Shelf>
-            </form>
+            </Shelf>
           </Frame>
           <Frame title="Folder" subtitle="Nested structures">
             <Shelf direction="column" gap="var(--gap-3)">

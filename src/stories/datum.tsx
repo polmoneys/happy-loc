@@ -38,7 +38,7 @@ export const DEMO_CHECKBOXES = {
 };
 
 export interface Shape {
-  id: number;
+  id: number | string;
   name: string;
 }
 
