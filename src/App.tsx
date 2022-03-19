@@ -109,7 +109,7 @@ export default function App() {
 
   const { output: fontSX } = useSx({ py: 3, f: 5 });
   const { output: iconSx } = useSx({ push: "left" });
-  const { output: paperSx } = useSx({ paper: 4, p: 4 });
+  const { output: paperSx } = useSx({ paper: 2, p: 4 });
 
   // Client side search with query and results cached
   const cacheInstance = useCache();
@@ -286,7 +286,105 @@ export default function App() {
               ))}
             </ButtonGroup>
           </Frame>
+          <Frame title="Folder" subtitle="Nested structures">
+            <Shelf direction="column" gap="var(--gap-3)">
+              <Folder folder={DEMO_FOLDER} />
+            </Shelf>
+          </Frame>
 
+          <Frame title="Chip">
+            <Shelf wrap gap="var(--gap-3)">
+              {DEMO_CHIPS?.map(chip => (
+                <Chip key={chip.id} {...chip} />
+              ))}
+              <Chip
+                variant="pill"
+                label="Some choice"
+                onClick={() => console.log("pill")}
+              />
+            </Shelf>
+          </Frame>
+          <Frame title="Tooltip" subtitle=":focus-visible & :focus-within">
+            <Shelf>
+              <Tooltip
+                label="Destroy"
+                offset={{
+                  start: "0",
+                  x: "0",
+                  y: "52px",
+                }}
+                closeLabel={<FiX />}
+              >
+                <div className={styles.tooltipAlpha}>
+                  <Shelf direction="column" className="pt $$$$$">
+                    <HelveticaNeue size={2}>Warning</HelveticaNeue>
+                    <HelveticaNeue className="pt $$$$$">
+                      This action is destructive bla bla bla and can not be
+                      undone...so, are you really really sure ?
+                    </HelveticaNeue>
+                    <Shelf className="mt-auto">
+                      <Button className="ml-auto">Burn it</Button>
+                    </Shelf>
+                  </Shelf>
+                </div>
+              </Tooltip>
+            </Shelf>
+
+            <div className="py $$$$$">
+              <HelveticaNeue as="span"> Lorem Ipsum is simply </HelveticaNeue>{" "}
+              <Tooltip
+                label={<HelveticaNeueBold>Somiatruites</HelveticaNeueBold>}
+                variant="inline"
+              >
+                <div className={styles.tooltipDelta}>
+                  <Shelf className={styles.grow}>
+                    <HelveticaNeueBold className="f @@ mr-auto">
+                      Somiatruites
+                    </HelveticaNeueBold>
+                    <FiBookmark />
+                  </Shelf>
+
+                  <HelveticaNeue as="span" className="mt-auto">
+                    Day dreamer.
+                  </HelveticaNeue>
+                </div>
+              </Tooltip>
+              <HelveticaNeue as="span">
+                text of the printing and typesetting centuries, but also the
+                leap into electronic typesetting, remaining essentially
+                unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages.
+              </HelveticaNeue>
+            </div>
+
+            <Shelf>
+              <Tooltip
+                label="Destroy"
+                className="ml-auto"
+                offset={{
+                  start: "0",
+                  x: "calc(-100% + 112px)",
+                  y: "52px",
+                }}
+              >
+                <div className={styles.tooltipBeta}>
+                  <Shelf direction="column" className={styles.grow}>
+                    <HelveticaNeue>Are you sure ?</HelveticaNeue>
+                    <Button className="mt-auto">Yes</Button>
+                  </Shelf>
+                </div>
+              </Tooltip>
+            </Shelf>
+          </Frame>
+
+          <Frame title="Listbox">
+            <Listbox
+              label={"Choose your catalan delight"}
+              initial="ensaimada"
+              groups={DEMO_LISTBOX}
+              onSelect={choice => console.log(choice)}
+            />
+          </Frame>
           <Frame title="Checkbox" subtitle="UseMixedState">
             <Shelf wrap gap="2rem">
               <Checkbox
@@ -325,15 +423,6 @@ export default function App() {
               ))}
             </Shelf>
           </Frame>
-          <Frame title="Listbox">
-            <Listbox
-              label={"Choose your catalan delight"}
-              initial="ensaimada"
-              groups={DEMO_LISTBOX}
-              onSelect={choice => console.log(choice)}
-            />
-          </Frame>
-
           <Frame title="Input" subtitle="Validation">
             <form onSubmit={() => console.log("SUBMITING")}>
               <Shelf direction="column" gap="var(--gap-3)">
@@ -381,7 +470,6 @@ export default function App() {
                 {list.map(listItem => (
                   <Shelf key={listItem.id} balanced className={styles.listLite}>
                     <Button
-                      start={<FiStar size="14px" />}
                       color="text"
                       onClick={() => {
                         if (
@@ -406,11 +494,6 @@ export default function App() {
                   </Shelf>
                 ))}
               </Shelf>
-            </Shelf>
-          </Frame>
-          <Frame title="Folder" subtitle="Nested structures">
-            <Shelf direction="column" gap="var(--gap-3)">
-              <Folder folder={DEMO_FOLDER} />
             </Shelf>
           </Frame>
 
@@ -571,75 +654,15 @@ export default function App() {
             </HorizontalScroll>
           </Frame>
 
-          <Frame title="Tooltip" subtitle=":focus-visible & :focus-within">
-            <Shelf>
-              <Tooltip
-                label="Destroy"
-                offset={{
-                  start: "0",
-                  x: "0",
-                  y: "52px",
-                }}
-                closeLabel={<FiX />}
-              >
-                <div className={styles.tooltipAlpha}>
-                  <Shelf direction="column" className="pt $$$$$">
-                    <HelveticaNeue size={2}>Warning</HelveticaNeue>
-                    <HelveticaNeue className="pt $$$$$">
-                      This action is destructive bla bla bla and can not be
-                      undone...so, are you really really sure ?
-                    </HelveticaNeue>
-                    <Shelf className="mt-auto">
-                      <Button className="ml-auto">Burn it</Button>
-                    </Shelf>
-                  </Shelf>
-                </div>
-              </Tooltip>
+          <Frame title="useSx" subtitle="Hook">
+            <Shelf balanced>
+              <p className={fontSX}>Styled paragraph </p>
+              <FiStar className={iconSx} />
             </Shelf>
 
-            <HelveticaNeue className="py $$$$$">
-              Lorem Ipsum is simply{" "}
-              <Tooltip
-                label={<HelveticaNeueBold>Somiatruites</HelveticaNeueBold>}
-                variant="inline"
-              >
-                <div className={styles.tooltipDelta}>
-                  <Shelf className={styles.grow}>
-                    <HelveticaNeueBold className="f @@ mr-auto">
-                      Somiatruites
-                    </HelveticaNeueBold>
-                    <FiBookmark />
-                  </Shelf>
-
-                  <HelveticaNeue as="span" className="mt-auto">
-                    Day dreamer.
-                  </HelveticaNeue>
-                </div>
-              </Tooltip>
-              text of the printing and typesetting centuries, but also the leap
-              into electronic typesetting, remaining essentially unchanged. It
-              was popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages.
-            </HelveticaNeue>
-
-            <Shelf>
-              <Tooltip
-                label="Destroy"
-                className="ml-auto"
-                offset={{
-                  start: "0",
-                  x: "calc(-100% + 112px)",
-                  y: "52px",
-                }}
-              >
-                <div className={styles.tooltipBeta}>
-                  <Shelf direction="column" className={styles.grow}>
-                    <HelveticaNeue>Are you sure ?</HelveticaNeue>
-                    <Button className="mt-auto">Yes</Button>
-                  </Shelf>
-                </div>
-              </Tooltip>
-            </Shelf>
+            <div className={paperSx}>
+              <FiBookmark size={44} />
+            </div>
           </Frame>
           <Frame title="Col to Row" subtitle="Shelf">
             <Shelf direction="colToRow" gap="1em">
@@ -651,31 +674,9 @@ export default function App() {
               <FiBookmark size={44} />
             </Shelf>
           </Frame>
-          <Frame title="useSx" subtitle="Hook">
-            <Shelf balanced>
-              <p className={fontSX}>Styled paragraph </p>
-              <FiStar className={iconSx} />
-            </Shelf>
-
-            <div className={paperSx}>
-              <FiBookmark size={44} />
-            </div>
-          </Frame>
-          <Frame title="Chip">
-            <Shelf wrap gap="var(--gap-3)">
-              {DEMO_CHIPS?.map(chip => (
-                <Chip key={chip.id} {...chip} />
-              ))}
-              <Chip
-                variant="pill"
-                label="Some choice"
-                onClick={() => console.log("pill")}
-              />
-            </Shelf>
-          </Frame>
         </Grid>
         <br />
-        <Frame title="Card + Ratio">
+        <Frame single title="Card + Ratio">
           <Shelf direction="column" gap="var(--gap-5)">
             <Grid gap="var(--gap-4)">
               <Card

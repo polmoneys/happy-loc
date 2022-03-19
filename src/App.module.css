@@ -22,6 +22,10 @@
 
 .inputWithChips input {
   border: none;
+  caret-color: currentColor;
+}
+.inputWithChips input::placeholder {
+  color: currentColor;
 }
 .chipsRow {
   width: fit-content;

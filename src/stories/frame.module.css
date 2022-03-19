@@ -6,6 +6,9 @@
   align-items: center;
 }
 
+.root.maxHeight {
+  height: 100%;
+}
 .title {
   border-bottom: var(--border-width) solid currentColor;
 }
