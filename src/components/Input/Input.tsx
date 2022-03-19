@@ -26,6 +26,7 @@ interface Props
     Pick<DefaultProps, "className" | "id"> {
   name: string;
   label: string;
+  labelHidden?: boolean;
   value?: string | number;
   type?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -68,6 +69,7 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
       onChange,
       start,
       label,
+      labelHidden = false,
       placeholder = null,
       name,
       autocomplete = "off",
@@ -79,12 +81,13 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
       type = "text",
       onBlur = () => ({}),
       onPaste = () => ({}),
+      ...rest
     } = props;
 
     const [valid, setStatus] = useState(!isNil(validation) ? false : true);
     const { output } = useStyles(
       styles.root,
-      !valid && styles.invalid,
+      !valid && !isNil(validation) && styles.invalid,
       required && styles.required,
       className
     );
@@ -108,7 +111,12 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
 
     return (
       <Shelf direction="column" className={output} gap="var(--gap-1)">
-        <label htmlFor={id}>{label}</label>
+        <label
+          {...(labelHidden && { className: styles.hiddenLabel })}
+          htmlFor={id}
+        >
+          {label}
+        </label>
         <Shelf balanced>
           {!isNil(start) && start}
           <input
@@ -129,6 +137,7 @@ const Input = forwardRef<HTMLInputElement, Props & BaseProps>(
             onBlur={onBlur}
             onPaste={onPaste}
             {...(placeholder && { placeholder })}
+            {...rest}
           />
           {!isNil(validation) ? (
             <HelveticaNeue id={`${id}-error`} aria-live="polite">
