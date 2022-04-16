@@ -39,6 +39,7 @@ import Grid from "@/components/Grid/Grid";
 import HorizontalScroll from "@/components/HorizontalScroll/HorizontalScroll";
 import Input from "@/components/Input/Input";
 import Listbox from "@/components/Listbox/Listbox";
+import Mine from "@/components/Mine/Mine";
 import Shape from "@/components/Shape/Shape";
 import Shelf from "@/components/Shelf/Shelf";
 import Stack from "@/components/Stack/Stack";
@@ -223,6 +224,8 @@ export default function App() {
         return;
     }
   };
+
+  const [hasExploded, setDetonation] = useState(false);
 
   return (
     <main className="app">
@@ -673,6 +676,26 @@ export default function App() {
               <FiBookmark size={44} />
               <FiBookmark size={44} />
             </Shelf>
+          </Frame>
+          <Frame title="Mine" subtitle="When in viewport, detonate">
+            <Mine
+              triggerOnce={false}
+              start={
+                <HelveticaNeue>{hasExploded ? "BOOM !" : ""}</HelveticaNeue>
+              }
+              onExplode={(isOn: boolean) => {
+                setDetonation(isOn);
+              }}
+            >
+              <Shape size={200} sides={hasExploded ? 7 : 4} />
+            </Mine>
+          </Frame>
+          <Frame title="Mine" subtitle="Sticky">
+            <Mine sticky>
+              <div className={styles.stickyBar}>
+                <Shape.Circle fill="var(--red-5)" />
+              </div>
+            </Mine>
           </Frame>
         </Grid>
         <br />
