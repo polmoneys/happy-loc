@@ -1,6 +1,7 @@
 import isNil from "lodash.isnil";
 import { useMemo } from "react";
 
+import { border, colors, font, gap } from "./css-tokens";
 import styles from "./UseSx.module.css";
 
 /**
@@ -15,6 +16,7 @@ import styles from "./UseSx.module.css";
 type PaperScale = 1 | 2 | 3 | 4;
 type PaddingScale = PaperScale | 5;
 type FontScale = PaddingScale | 6;
+type TokensObject = Record<string, string>;
 
 interface Props {
   p?: PaddingScale;
@@ -34,6 +36,10 @@ interface Props {
 
 function useSx(props: Props): {
   output: string;
+  border: TokensObject;
+  gap: Array<string>;
+  colors: TokensObject;
+  font: Array<string>;
 } {
   const output = useMemo(() => {
     const {
@@ -73,7 +79,7 @@ function useSx(props: Props): {
     ]);
   }, [props]);
 
-  return { output };
+  return { output, colors, border, gap, font };
 }
 
 export default useSx;
