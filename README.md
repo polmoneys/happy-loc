@@ -1,7 +1,9 @@
 # TLDR
 
 >Alma se tiene a veces /
+
 > nadie la posee sin pausa y /
+
 > para siempre
 
 **Wislawa Szymborska**
@@ -66,8 +68,6 @@ Erik Gunnar Asplund on **Swedish Grace**.
 ### Author 
 
 @polmoneys 
-
-CSS behind has it's own [repository](https://github.com/polmoneys/mental-model).
 
 You may be interested in [print-grid](https://github.com/polmoneys/print-grid-react), a React component for laying out items like if we were still on 'print'. 
 
